@@ -1,5 +1,5 @@
 import React from 'react'
-// TODO - add proptypes
+import { Button } from 'react-bootstrap';
 
 const Home = props => {
 	if (props.user) {
@@ -13,6 +13,7 @@ const Home = props => {
 		)
 	} else {
 		return (
+			
 			<div className="Home">
 				<p>Current User:</p>
 				<code>
