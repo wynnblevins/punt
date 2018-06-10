@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from 'react-bootstrap';
 import TeamPickers from './TeamPickers/TeamPickers';
+import PredictButton from './PredictButton/PredictButton';
 
 const Home = props => {
 	if (props.user) {
@@ -8,6 +9,7 @@ const Home = props => {
 			<div className="Home">
 				<p>Current User:</p>
 				<TeamPickers></TeamPickers>
+				<PredictButton></PredictButton>
 			</div>
 		)
 	} else {
