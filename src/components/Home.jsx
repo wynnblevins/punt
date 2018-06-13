@@ -1,20 +1,16 @@
-import React from 'react'
-import { Button } from 'react-bootstrap';
-import TeamPickers from './TeamPickers/TeamPickers';
-import PredictButton from './PredictButton/PredictButton';
+import React from 'react';
+import Predictor from './Predictor/Predictor';
 
 const Home = props => {
 	if (props.user) {
 		return (
 			<div className="Home">
 				<p>Current User:</p>
-				<TeamPickers></TeamPickers>
-				<PredictButton></PredictButton>
+				<Predictor></Predictor>
 			</div>
 		)
 	} else {
 		return (
-			
 			<div className="Home">
 				<p>Current User:</p>
 				<code>
@@ -25,4 +21,4 @@ const Home = props => {
 	}
 }
 
-export default Home
+export default Home;
