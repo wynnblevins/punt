@@ -6,6 +6,7 @@ import LoginForm from './components/Login/LoginForm'
 import SignupForm from './components/SignupForm'
 import Header from './components/Header'
 import Home from './components/Home'
+import APIAccount from './components/APIAccount';
 import { Tabs, Tab } from 'react-bootstrap';
 import Predictor from './components/Predictor/Predictor';
 import { Button } from 'react-bootstrap';
@@ -18,7 +19,10 @@ const DisplayLinks = props => {
 					Logout
 				</Link>
 			  <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
-				  <Tab eventKey={2} title="Predictor">
+				  <Tab eventKey={1} title="API Account">
+						<APIAccount></APIAccount>
+					</Tab>
+					<Tab eventKey={2} title="Predictor">
 					  <Predictor></Predictor>
 				  </Tab>
 			  </Tabs>

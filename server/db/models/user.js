@@ -9,22 +9,16 @@ const userSchema = new Schema({
 	lastName: { type: String, unique: false },
 	local: {
 		username: { type: String, unique: false, required: false },
-		password: { type: String, unique: false, required: false }
+		password: { type: String, unique: false, required: false },
+		sportsFeedAccount: {
+			type: Schema.Types.ObjectId,
+			ref: 'SportsFeedAccount'  
+		}
 	},
 	google: {
 		googleId: { type: String, required: false }
 	},
 	photos: []
-	// local: {
-	// 	email: { type: String, unique: true },
-	// 	password: { type: String }
-	// },
-	// google: {
-	// 	id: { type: String },
-	// 	photos: []
-	// },
-	// firstName: { type: String },
-	// lastName: { type: String }
 })
 
 // Define schema methods
