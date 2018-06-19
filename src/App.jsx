@@ -6,46 +6,38 @@ import LoginForm from './components/Login/LoginForm'
 import SignupForm from './components/SignupForm'
 import Header from './components/Header'
 import Home from './components/Home'
+import { Tabs, Tab } from 'react-bootstrap';
+import Predictor from './components/Predictor/Predictor';
+import { Button } from 'react-bootstrap';
 
 const DisplayLinks = props => {
 	if (props.loggedIn) {
 		return (
-			<nav className="navbar">
-				<ul className="nav">
-					<li className="nav-item">
-						<Link to="/" className="nav-link">
-							Home
-						</Link>
-					</li>
-					<li>
-						<Link to="#" className="nav-link" onClick={props._logout}>
-							Logout
-						</Link>
-					</li>
-				</ul>
-			</nav>
+			<div>
+				<Link to="#" className="nav-link" onClick={props._logout}>
+					Logout
+				</Link>
+			  <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
+				  <Tab eventKey={1} title="Account">
+					  Tab 1 content
+				  </Tab>
+				  <Tab eventKey={2} title="Predictor">
+					  <Predictor></Predictor>
+				  </Tab>
+			  </Tabs>
+			</div>
 		)
-	} else {
+	} else if (window.location.href.endsWith('/signup') || 
+		window.location.href.endsWith('/login')) { 
+		// if not signed in but on the signup page
+		return (<div></div>);
+	} 
+	else {
 		return (
-			<nav className="navbar">
-				<ul className="nav">
-					<li className="nav-item">
-						<Link to="/" className="nav-link">
-							Home
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to="/login" className="nav-link">
-							login
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link to="/signup" className="nav-link">
-							sign up
-						</Link>
-					</li>
-				</ul>
-			</nav>
+			<div>		
+				<Button href="/login">login</Button>
+				<Button href="/signup">sign up</Button>
+			</div>
 		)
 	}
 }

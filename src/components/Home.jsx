@@ -5,17 +5,13 @@ const Home = props => {
 	if (props.user) {
 		return (
 			<div className="Home">
-				<p>Current User:</p>
-				<Predictor></Predictor>
+				
 			</div>
 		)
 	} else {
 		return (
 			<div className="Home">
-				<p>Current User:</p>
-				<code>
-					{JSON.stringify(props)}
-				</code>
+				{/* Display logged out message here. */}
 			</div>
 		)
 	}

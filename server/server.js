@@ -56,7 +56,7 @@ app.use(function(err, req, res, next) {
 	res.status(500)
 })
 
-require('./controllers/winnerController.js')(app);
+require('./controllers/predictionController.js')(app);
 
 // ==== Starting Server =====
 app.listen(PORT, () => {
