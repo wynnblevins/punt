@@ -18,9 +18,6 @@ const DisplayLinks = props => {
 					Logout
 				</Link>
 			  <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
-				  <Tab eventKey={1} title="Account">
-					  Tab 1 content
-				  </Tab>
 				  <Tab eventKey={2} title="Predictor">
 					  <Predictor></Predictor>
 				  </Tab>

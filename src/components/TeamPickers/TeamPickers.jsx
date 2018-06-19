@@ -8,8 +8,6 @@ class TeamPickers extends Component {
   }
   
   onTeamASelect = () => {
-    console.log('inside on team a select.');
-    console.log(this);
     this.props.teamAChanged();
   }
 
@@ -20,17 +18,22 @@ class TeamPickers extends Component {
   onPredictClick() {
     let url = 'https://api.mysportsfeeds.com/v1.2/pull/nfl/2018-regular/cumulative_player_stats.json?playerstats=Att,Comp,Yds,TD';
     $.ajax({
-      type: "GET",
-      url: url,
+      type: 'GET',
+      url: 'api/creds',
       dataType: 'json',
-      async: false,
-      headers: {
-        "Authorization": "Basic " + btoa('username:password')
-      },
-      success: function (data) {
-        console.log(data); 
+      success: function (authData) {
+        $.ajax({
+          type: "GET",
+          url: url,
+          dataType: 'json',
+          async: false,
+          headers: authData,
+          success: function (resData) {
+            console.log(resData); 
+          }
+        });     
       }
-    }); 
+    });
   }
 
   render() {
