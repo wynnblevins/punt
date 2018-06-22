@@ -10,6 +10,7 @@ import APIAccount from './components/APIAccount';
 import { Tabs, Tab } from 'react-bootstrap';
 import Predictor from './components/Predictor/Predictor';
 import { Button } from 'react-bootstrap';
+import Teams from './teams';
 
 const DisplayLinks = props => {
 	if (props.loggedIn) {
@@ -23,7 +24,7 @@ const DisplayLinks = props => {
 						<APIAccount></APIAccount>
 					</Tab>
 					<Tab eventKey={2} title="Predictor">
-					  <Predictor></Predictor>
+					  <Predictor onPredictClick={props.onPredictClick} onTeamSelect={props.onTeamSelect} teams={props.teams}></Predictor>
 				  </Tab>
 			  </Tabs>
 			</div>
@@ -47,12 +48,16 @@ class App extends Component {
 	constructor() {
 		super()
 		this.state = {
+			teams: Teams,
 			loggedIn: false,
-			user: null
+			user: null,
+			teamAId: null,
+			teamBId: null
 		}
-		this._logout = this._logout.bind(this)
-		this._login = this._login.bind(this)
+		this._logout = this._logout.bind(this);
+		this._login = this._login.bind(this);
 	}
+	
 	componentDidMount() {
 		axios.get('/auth/user').then(response => {
 			console.log(response.data)
@@ -103,13 +108,46 @@ class App extends Component {
 			})
 	}
 
+	onTeamSelect = (e) => {
+		console.log(e.target);
+		console.log('inside on team select' + e.target.value);
+		console.log('id of selected box is ' + e.target.id);
+		const rightId = 'rightTeamPicker';
+		const leftId = 'leftTeamPicker';
+
+		if (e.target.id === rightId) {
+			this.setState({ teamAID: e.target.value });
+		} else if (e.target.id === leftId) {
+			this.setState({ teamBID: e.target.value })
+		} else {
+			console.error('Holy crap, something is waaaay wrong');
+		}
+	}
+
+	requestWinner = (self) => {
+		let teamAId = self.state.teamAID;
+		let teamBId = self.state.teamBID;
+		let requestUrl = `/api/prediction/teamA/${teamAId}/teamB/${teamBId}`;
+		
+		console.log('inside request winner');
+		console.log(`url is ${requestUrl}`);
+		
+		
+		
+	}
+	
 	render() {
+		const self = this;
+		
 		return (
 			<div className="App">
 				<h1>This is the main App component</h1>
 				<Header user={this.state.user} />
 				{/* LINKS to our different 'pages' */}
-				<DisplayLinks _logout={this._logout} loggedIn={this.state.loggedIn} />
+				<DisplayLinks _logout={self._logout} loggedIn={self.state.loggedIn} 
+				  teams={self.state.teams} onPredictClick={function () {
+						self.requestWinner(self); 
+					}} onTeamSelect={self.onTeamSelect}/>
 				{/*  ROUTES */}
 				{/* <Route exact path="/" component={Home} /> */}
 				<Route exact path="/" render={() => <Home user={this.state.user} />} />
