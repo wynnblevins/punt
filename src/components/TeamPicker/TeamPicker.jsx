@@ -12,7 +12,7 @@ class TeamPicker extends Component {
 
   render() {
     return (
-      <FormGroup controlId="formControlsSelect">
+      <FormGroup>
         <ControlLabel>Select</ControlLabel>
         <FormControl id={this.props.id} onChange={this.props.onTeamSelect} componentClass="select" 
           placeholder="select team" value={this.state.teamId}>
