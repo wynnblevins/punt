@@ -9,6 +9,7 @@ const dbConnection = require('./db') // loads our connection to the mongo databa
 const passport = require('./passport')
 const app = express()
 const PORT = process.env.PORT || 8080;
+const path = require('path');
 
 // ===== Middleware ====
 app.use(morgan('dev'))
@@ -31,16 +32,6 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session()) // will call the deserializeUser
 
-// ==== if its production environment!
-if (process.env.NODE_ENV === 'production') {
-	const path = require('path')
-	console.log('YOU ARE IN THE PRODUCTION ENV')
-	app.use('/static', express.static(path.join(__dirname, '../build/static')))
-	app.get('/', (req, res) => {
-		res.sendFile(path.join(__dirname, '../build/'))
-	})
-}
-
 /* Express app ROUTING */
 app.use('/auth', require('./auth'))
 
@@ -54,7 +45,15 @@ app.use(function(err, req, res, next) {
 require('./controllers/credsController.js')(app);
 require('./controllers/predictionController.js')(app);
 
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.resolve('../build/')));
+}
+
+app.get('*', (req, res) => {
+	res.sendFile(path.resolve('../build/index.html'));
+});
+
 // ==== Starting Server =====
 app.listen(PORT, () => {
 	console.log(`App listening on PORT: ${PORT}`)
-})
+});
