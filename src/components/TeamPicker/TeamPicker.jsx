@@ -13,7 +13,7 @@ class TeamPicker extends Component {
   render() {
     return (
       <FormGroup>
-        <ControlLabel>Select</ControlLabel>
+        <ControlLabel>{this.props.pickerLabel}</ControlLabel>
         <FormControl id={this.props.id} onChange={this.props.onTeamSelect} componentClass="select" 
           placeholder="select team" value={this.state.teamId}>
           {this.props.teams.map((team) => {

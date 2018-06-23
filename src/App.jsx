@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
-import axios from 'axios'
-import { Route, Link } from 'react-router-dom'
-import './App.css'
-import LoginForm from './components/Login/LoginForm'
-import SignupForm from './components/SignupForm'
-import Header from './components/Header'
-import Home from './components/Home'
-import APIAccount from './components/APIAccount';
+import React, { Component } from 'react';
+import axios from 'axios';
+import { Route, Link } from 'react-router-dom';
+import './App.css';
+import LoginForm from './components/Login/LoginForm';
+import SignupForm from './components/SignupForm';
+import Header from './components/Header';
+import Home from './components/Home';
 import { Tabs, Tab } from 'react-bootstrap';
 import Predictor from './components/Predictor/Predictor';
-import { Button } from 'react-bootstrap';
 import Teams from './teams';
 
 const DisplayLinks = props => {
@@ -20,11 +18,9 @@ const DisplayLinks = props => {
 					Logout
 				</Link>
 			  <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
-				  <Tab eventKey={1} title="API Account">
-						<APIAccount></APIAccount>
-					</Tab>
-					<Tab eventKey={2} title="Predictor">
-					  <Predictor onPredictClick={props.onPredictClick} onTeamSelect={props.onTeamSelect} teams={props.teams}></Predictor>
+				  <Tab eventKey={2} title="Predictor">
+						<Predictor onPredictClick={props.onPredictClick} 
+							onTeamSelect={props.onTeamSelect} teams={props.teams}></Predictor>
 				  </Tab>
 			  </Tabs>
 			</div>
