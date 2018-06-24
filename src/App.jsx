@@ -105,9 +105,6 @@ class App extends Component {
 	}
 
 	onTeamSelect = (e) => {
-		console.log(e.target);
-		console.log('inside on team select' + e.target.value);
-		console.log('id of selected box is ' + e.target.id);
 		const rightId = 'rightTeamPicker';
 		const leftId = 'leftTeamPicker';
 
@@ -125,11 +122,12 @@ class App extends Component {
 		let teamBId = self.state.teamBID;
 		let requestUrl = `/api/prediction/teamA/${teamAId}/teamB/${teamBId}`;
 		
-		console.log('inside request winner');
-		console.log(`url is ${requestUrl}`);
-		
-		
-		
+		console.log(`requested url is ${requestUrl}`);
+		axios.get(requestUrl).then((response) => {
+			console.log('response: ' + response);
+		}).catch((err) => {
+			throw err;
+		});
 	}
 	
 	render() {

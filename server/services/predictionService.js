@@ -1,7 +1,12 @@
 var DecisionTree = require('decision-tree');
 
 const predictionService = {
-  predict: function () {
+  predict: function (teamAData, teamBData) {
+    // year = {
+    //   season: seasonStr,
+    //   totalRecYds: parseAllRecYards(results[i].data),  
+    // };
+
     var training_data = [
       {"color":"blue", "shape":"square", "liked":false},
       {"color":"red", "shape":"square", "liked":false},
@@ -31,7 +36,7 @@ const predictionService = {
       shape: "hexagon"
     });
 
-    console.log(predicted_class);
+    return predicted_class;
   }
 };
 
