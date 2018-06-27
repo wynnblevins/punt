@@ -20,7 +20,9 @@ const DisplayLinks = props => {
 			  <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
 				  <Tab eventKey={2} title="Predictor">
 						<Predictor onPredictClick={props.onPredictClick} 
-							onTeamSelect={props.onTeamSelect} teams={props.teams}></Predictor>
+							onTeamSelect={props.onTeamSelect} teams={props.teams}
+							predictionMade={props.predictionMade} 
+							teamAWinner={props.teamAWinner}></Predictor>
 				  </Tab>
 			  </Tabs>
 			</div>
@@ -49,7 +51,8 @@ class App extends Component {
 			user: null,
 			teamAId: null,
 			teamBId: null,
-			teamAWinner: null
+			teamAWinner: null,
+			predictionMade: false
 		}
 		this._logout = this._logout.bind(this);
 		this._login = this._login.bind(this);
@@ -125,9 +128,11 @@ class App extends Component {
 		axios.get(requestUrl).then((response) => {
 			if (response.data === true) {
 				this.setState({teamAWinner: true});
+				this.setState({predictionMade: true});
 				console.log('team a is the winner.');
 			} else {
 				this.setState({teamAWinner: false});
+				this.setState({predictionMade: true})
 				console.log('team b is the winner.');
 			}
 		}).catch((err) => {
@@ -146,7 +151,8 @@ class App extends Component {
 				<DisplayLinks _logout={self._logout} loggedIn={self.state.loggedIn} 
 				  teams={self.state.teams} onPredictClick={function () {
 						self.requestWinner(self); 
-					}} onTeamSelect={self.onTeamSelect}/>
+					}} onTeamSelect={self.onTeamSelect} teamAWinner={self.state.teamAWinner}
+					predictionMade={self.state.predictionMade}/>
 				{/*  ROUTES */}
 				{/* <Route exact path="/" component={Home} /> */}
 				<Route exact path="/" render={() => <Home user={this.state.user} />} />

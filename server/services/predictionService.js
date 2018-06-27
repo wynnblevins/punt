@@ -65,7 +65,9 @@ function runDecisionTree(data) {
     'teamAKickoffReturnYds',
     'teamBKickoffReturnYds',
     'teamAFumbles',
-    'teamBFumbles'
+    'teamBFumbles',
+    'teamAPuntReturnYds',
+    'teamBPuntReturnYds'
   ];
 
   let dt = new DecisionTree(gameHistory, className, features);
