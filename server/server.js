@@ -17,7 +17,7 @@ app.use(
 	bodyParser.urlencoded({
 		extended: false
 	})
-)
+);
 app.use(bodyParser.json())
 app.use(
 	session({
@@ -26,7 +26,7 @@ app.use(
 		resave: false,
 		saveUninitialized: false
 	})
-)
+);
 
 // ===== Passport ====
 app.use(passport.initialize())

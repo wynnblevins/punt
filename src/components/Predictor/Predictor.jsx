@@ -5,12 +5,12 @@ const Predictor = (props) => (
   <div className="row">
     <div className="col-sm-12 col-md-6">
       <TeamPicker id='rightTeamPicker' teams={props.teams} 
-        onTeamSelect={props.onTeamSelect} pickerLabel="Select Team A">
+        onTeamSelect={props.onTeamSelect} pickerLabel="Select Team B">
       </TeamPicker>    
     </div>
     <div className="col-sm-12 col-md-6">
       <TeamPicker id='leftTeamPicker' teams={props.teams} 
-        onTeamSelect={props.onTeamSelect} pickerLabel="Select Team B">
+        onTeamSelect={props.onTeamSelect} pickerLabel="Select Team A">
       </TeamPicker>
     </div>
     <button onClick={props.onPredictClick} 

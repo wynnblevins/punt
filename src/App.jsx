@@ -48,7 +48,8 @@ class App extends Component {
 			loggedIn: false,
 			user: null,
 			teamAId: null,
-			teamBId: null
+			teamBId: null,
+			teamAWinner: null
 		}
 		this._logout = this._logout.bind(this);
 		this._login = this._login.bind(this);
@@ -87,12 +88,10 @@ class App extends Component {
 	}
 
 	_login(username, password) {
-		axios
-			.post('/auth/login', {
+		axios.post('/auth/login', {
 				username,
 				password
-			})
-			.then(response => {
+			}).then(response => {
 				console.log(response)
 				if (response.status === 200) {
 					// update the state
@@ -101,7 +100,7 @@ class App extends Component {
 						user: response.data.user
 					})
 				}
-			})
+			});
 	}
 
 	onTeamSelect = (e) => {
@@ -124,7 +123,13 @@ class App extends Component {
 		
 		console.log(`requested url is ${requestUrl}`);
 		axios.get(requestUrl).then((response) => {
-			console.log('response: ' + response);
+			if (response.data === true) {
+				this.setState({teamAWinner: true});
+				console.log('team a is the winner.');
+			} else {
+				this.setState({teamAWinner: false});
+				console.log('team b is the winner.');
+			}
 		}).catch((err) => {
 			throw err;
 		});

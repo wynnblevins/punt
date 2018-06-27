@@ -15,6 +15,7 @@
 		"express-session": "^1.15.4",
 		"if-env": "^1.0.4",
 		"jquery": "^3.3.1",
+		"moment": "^2.22.2",
 		"mongoose": "^4.11.4",
 		"morgan": "^1.8.2",
 		"mysportsfeeds-node": "^1.0.0",
@@ -39,7 +40,8 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test --env=jsdom",
 		"eject": "react-scripts eject",
-		"heroku-postbuild": "yarn build"
+		"heroku-postbuild": "yarn build",
+		"client": "react-scripts start"
 	},
 	"proxy": "http://localhost:8080"
 }
