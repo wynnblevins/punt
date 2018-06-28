@@ -144,8 +144,7 @@ class App extends Component {
 		const self = this;
 		
 		return (
-			<div className="App">
-				<h1>This is the main App component</h1>
+			<div className="App">				
 				<Header user={this.state.user} />
 				{/* LINKS to our different 'pages' */}
 				<DisplayLinks _logout={self._logout} loggedIn={self.state.loggedIn} 
