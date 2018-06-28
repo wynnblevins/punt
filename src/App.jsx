@@ -18,7 +18,7 @@ const DisplayLinks = props => {
 					Logout
 				</Link>
 			  <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
-				  <Tab eventKey={2} title="Predictor">
+					<Tab eventKey={2} title="Predictor">
 						<Predictor onPredictClick={props.onPredictClick} 
 							onTeamSelect={props.onTeamSelect} teams={props.teams}
 							predictionMade={props.predictionMade} 
