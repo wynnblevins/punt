@@ -9,6 +9,7 @@ import Home from './components/Home';
 import { Tabs, Tab } from 'react-bootstrap';
 import Predictor from './components/Predictor/Predictor';
 import Teams from './teams';
+import Description from './components/Description/Description';
 
 const DisplayLinks = props => {
 	if (props.loggedIn) {
@@ -17,7 +18,10 @@ const DisplayLinks = props => {
 				<Link to="#" className="nav-link" onClick={props._logout}>
 					Logout
 				</Link>
-			  <Tabs defaultActiveKey={2} id="uncontrolled-tab-example">
+			  <Tabs defaultActiveKey={1} id="predictorTabs">
+					<Tab eventKey={1} title="How it Works">
+						<Description></Description>
+					</Tab>
 					<Tab eventKey={2} title="Predictor">
 						<Predictor onPredictClick={props.onPredictClick} 
 							onTeamSelect={props.onTeamSelect} teams={props.teams}
