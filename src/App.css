@@ -22,3 +22,16 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.aboutParagraph {
+  text-align: left;
+}
+
+.aboutHeader {
+  text-align: left;
+}
+
+a#logoutLink {
+  margin-right: 20px;
+  color: #777;
+}

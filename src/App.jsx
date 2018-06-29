@@ -15,10 +15,7 @@ const DisplayLinks = props => {
 	if (props.loggedIn) {
 		return (
 			<div>
-				<Link to="#" className="nav-link" onClick={props._logout}>
-					Logout
-				</Link>
-			  <Tabs defaultActiveKey={1} id="predictorTabs">
+				<Tabs defaultActiveKey={1} id="predictorTabs">
 					<Tab eventKey={1} title="How it Works">
 						<Description></Description>
 					</Tab>
@@ -149,9 +146,9 @@ class App extends Component {
 		
 		return (
 			<div className="App">				
-				<Header user={this.state.user} />
+				<Header user={this.state.user} _logout={self._logout} />
 				{/* LINKS to our different 'pages' */}
-				<DisplayLinks _logout={self._logout} loggedIn={self.state.loggedIn} 
+				<DisplayLinks loggedIn={self.state.loggedIn} 
 				  teams={self.state.teams} onPredictClick={function () {
 						self.requestWinner(self); 
 					}} onTeamSelect={self.onTeamSelect} teamAWinner={self.state.teamAWinner}
