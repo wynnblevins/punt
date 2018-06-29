@@ -1,5 +1,4 @@
 import React from 'react';
-import Predictor from './Predictor/Predictor';
 
 const Home = props => {
 	if (props.user) {

@@ -8,7 +8,9 @@ const Description = (props) => {
         makes a prediction as to which football team will win.  It does this by using a 
         data structure known as a decision tree. The following image shows a decision tree which 
         helps us decide whether we will play outside or not.</p>
-      <img className="img-responsive" src="./play-outside-decision-tree.png"/>
+      <div className="text-center">
+        <img className="rounded mx-auto d-block" src="./play-outside-decision-tree.png"/>
+      </div>
       <p className="aboutParagraph">We read a decision tree by starting at the top or 
         "root node" of the tree and start working toward one of the "leaf nodes" on the bottom 
         of the tree.  Whatever the value of that final leaf node will be the resulting decision.  
@@ -26,10 +28,10 @@ const Description = (props) => {
       <h3 className="aboutHeader">Future Developments</h3>
       <p className="aboutParagraph">Currently, we can only train our decision tree with data that
         goes back several years.  That said, the decision trees ID3 builds for us will only get 
-        more accurate with the addition of new years of data.  As more statistics and data become 
-        available through the mysportsfeed.com REST api, in theory, the resulting decision trees 
-        should only get more accurate.  That said, it might be nice to selectively pick years of data
-        to omit/include when training the decision tree.    
+        more accurate with the addition of new years of data.  In theory, as more statistics and data 
+        become available through the mysportsfeed.com REST api, the resulting decision trees 
+        should only become more accurate.  Furthermore, a possibility for future development 
+        involves selectively picking years of data to omit/include when training the decision tree.    
       </p>
     </div>
   );

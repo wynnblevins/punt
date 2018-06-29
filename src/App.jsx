@@ -9,6 +9,7 @@ import Home from './components/Home';
 import { Tabs, Tab } from 'react-bootstrap';
 import Predictor from './components/Predictor/Predictor';
 import Teams from './teams';
+import Divisions from './divisions';
 import Description from './components/Description/Description';
 
 const DisplayLinks = props => {
@@ -16,15 +17,17 @@ const DisplayLinks = props => {
 		return (
 			<div>
 				<Tabs defaultActiveKey={1} id="predictorTabs">
-					<Tab eventKey={1} title="How it Works">
-						<Description></Description>
-					</Tab>
-					<Tab eventKey={2} title="Predictor">
+					<Tab eventKey={1} title="Predictor">
 						<Predictor onPredictClick={props.onPredictClick} 
-							onTeamSelect={props.onTeamSelect} teams={props.teams}
+							onTeamSelect={props.onTeamSelect} 
+							onDivisionSelect={props.onDivisionSelect}
+							teams={props.teams} divisions={props.divisions}
 							predictionMade={props.predictionMade} 
 							teamAWinner={props.teamAWinner}></Predictor>
 				  </Tab>
+					<Tab eventKey={2} title="How it Works">
+						<Description></Description>
+					</Tab>
 			  </Tabs>
 			</div>
 		)
@@ -48,6 +51,7 @@ class App extends Component {
 		super()
 		this.state = {
 			teams: Teams,
+			divisions: Divisions,
 			loggedIn: false,
 			user: null,
 			teamAId: null,
@@ -120,6 +124,10 @@ class App extends Component {
 		}
 	}
 
+	onDivisionSelect = (e) => {
+		console.log('inside on division select.');
+	}
+
 	requestWinner = (self) => {
 		let teamAId = self.state.teamAID;
 		let teamBId = self.state.teamBID;
@@ -149,7 +157,8 @@ class App extends Component {
 				<Header user={this.state.user} _logout={self._logout} />
 				{/* LINKS to our different 'pages' */}
 				<DisplayLinks loggedIn={self.state.loggedIn} 
-				  teams={self.state.teams} onPredictClick={function () {
+					teams={self.state.teams} divisions={self.state.divisions} 
+					onPredictClick={function () {
 						self.requestWinner(self); 
 					}} onTeamSelect={self.onTeamSelect} teamAWinner={self.state.teamAWinner}
 					predictionMade={self.state.predictionMade}/>
