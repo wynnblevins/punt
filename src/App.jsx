@@ -23,7 +23,8 @@ const DisplayLinks = props => {
 							onDivisionSelect={props.onDivisionSelect}
 							teams={props.teams} divisions={props.divisions}
 							predictionMade={props.predictionMade} 
-							teamAWinner={props.teamAWinner}></Predictor>
+							teamAWinner={props.teamAWinner}
+							selectedDivision={props.selectedDivision}></Predictor>
 				  </Tab>
 					<Tab eventKey={2} title="How it Works">
 						<Description></Description>
@@ -52,6 +53,7 @@ class App extends Component {
 		this.state = {
 			teams: Teams,
 			divisions: Divisions,
+			selectedDivision: 'AFC East',
 			loggedIn: false,
 			user: null,
 			teamAId: null,
@@ -125,7 +127,7 @@ class App extends Component {
 	}
 
 	onDivisionSelect = (e) => {
-		console.log('inside on division select.');
+		this.setState({ selectedDivision: e.target.value })
 	}
 
 	requestWinner = (self) => {
@@ -157,10 +159,14 @@ class App extends Component {
 				<Header user={this.state.user} _logout={self._logout} />
 				{/* LINKS to our different 'pages' */}
 				<DisplayLinks loggedIn={self.state.loggedIn} 
-					teams={self.state.teams} divisions={self.state.divisions} 
+					teams={self.state.teams} 
+					selectedDivision={self.state.selectedDivision} 
+					divisions={self.state.divisions} 
 					onPredictClick={function () {
 						self.requestWinner(self); 
-					}} onTeamSelect={self.onTeamSelect} teamAWinner={self.state.teamAWinner}
+					}} onTeamSelect={self.onTeamSelect} 
+					onDivisionSelect={self.onDivisionSelect}
+					teamAWinner={self.state.teamAWinner}
 					predictionMade={self.state.predictionMade}/>
 				{/*  ROUTES */}
 				{/* <Route exact path="/" component={Home} /> */}

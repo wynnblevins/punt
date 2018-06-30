@@ -13,10 +13,10 @@ class DivisionPicker extends Component {
     return (
       <FormGroup>
         <ControlLabel>{this.props.pickerLabel}</ControlLabel>
-        <FormControl id={this.props.id} onChange={this.props.onTeamSelect} componentClass="select" 
-          placeholder="select team" value={this.state.teamId}>
+        <FormControl id={this.props.id} onChange={this.props.onDivisionSelect} componentClass="select" 
+          placeholder="select team" value={this.state.division}>
           {this.props.divisions.map((division) => {
-            return <option key={division.id} value={division.id}>{division.name}</option>
+            return <option key={division.id} value={division.name}>{division.name}</option>
           })}
         </FormControl>
       </FormGroup>
