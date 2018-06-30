@@ -22,6 +22,8 @@ const DisplayLinks = props => {
 							onTeamSelect={props.onTeamSelect} 
 							onDivisionSelect={props.onDivisionSelect}
 							teams={props.teams} divisions={props.divisions}
+							teamAID={props.teamAID}
+							teamBID={props.teamBID}
 							predictionMade={props.predictionMade} 
 							teamAWinner={props.teamAWinner}
 							selectedDivision={props.selectedDivision}></Predictor>
@@ -56,8 +58,8 @@ class App extends Component {
 			selectedDivision: 'AFC East',
 			loggedIn: false,
 			user: null,
-			teamAId: null,
-			teamBId: null,
+			teamAID: null,
+			teamBID: null,
 			teamAWinner: null,
 			predictionMade: false
 		}
@@ -160,6 +162,8 @@ class App extends Component {
 				{/* LINKS to our different 'pages' */}
 				<DisplayLinks loggedIn={self.state.loggedIn} 
 					teams={self.state.teams} 
+					teamAID={self.state.teamAID}
+					teamBID={self.state.teamBID}
 					selectedDivision={self.state.selectedDivision} 
 					divisions={self.state.divisions} 
 					onPredictClick={function () {
