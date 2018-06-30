@@ -6,7 +6,6 @@ const Predictor = (props) => {
   if (props.predictionMade === false) {
     return (
       <div className="pickersWrapper">
-        Selected Division: {props.selectedDivision}
         <div className="row">
           <div className="col-xs-12">
             <DivisionPicker id="divisionPicker" divisions={props.divisions} 
@@ -39,7 +38,6 @@ const Predictor = (props) => {
     if (props.teamAWinner) {
       return (
         <div className="pickersWrapper">
-          Selected Division: {props.selectedDivision}
           <div className="row">
             <div className="col-xs-12">
               <DivisionPicker id="divisionPicker" divisions={props.divisions} 
@@ -71,22 +69,24 @@ const Predictor = (props) => {
     } else {
       return (
         <div className="pickersWrapper">
-          Selected Division: {props.selectedDivision}
           <div className="row">
             <div className="col-xs-12">
-              <DivisionPicker id='rightTeamPicker' divisions={props.divisions} 
+              <DivisionPicker id='divisionPicker' divisions={props.divisions} 
                 onDivisionSelect={props.onDivisionSelect} pickerLabel="Select Division">
               </DivisionPicker>                
             </div>
           </div>
           <div className="row">
             <div className="col-sm-12 col-md-6">
-              <TeamPicker id='rightTeamPicker' teams={props.teams} 
-                onTeamSelect={props.onTeamSelect} pickerLabel="Select Team B">
+              <TeamPicker id='rightTeamPicker'
+                teams={props.teams.filter(team => team.division === props.selectedDivision )}
+                onTeamSelect={props.onTeamSelect} 
+                pickerLabel="Select Team B">
               </TeamPicker>    
             </div>
             <div className="col-sm-12 col-md-6">
-              <TeamPicker id='leftTeamPicker' teams={props.teams} 
+              <TeamPicker id='leftTeamPicker' 
+                teams={props.teams.filter(team => team.division === props.selectedDivision )}
                 onTeamSelect={props.onTeamSelect} 
                 pickerLabel="Select Team A">
               </TeamPicker>
