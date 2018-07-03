@@ -26,7 +26,8 @@ const DisplayLinks = props => {
 							teamBID={props.teamBID}
 							predictionMade={props.predictionMade} 
 							teamAWinner={props.teamAWinner}
-							selectedDivision={props.selectedDivision}></Predictor>
+							selectedDivision={props.selectedDivision}
+							showSpinner={props.showSpinner}></Predictor>
 				  </Tab>
 					<Tab eventKey={2} title="How it Works">
 						<Description></Description>
@@ -61,7 +62,8 @@ class App extends Component {
 			teamAID: null,
 			teamBID: null,
 			teamAWinner: null,
-			predictionMade: false
+			predictionMade: false,
+			showSpinner: false
 		}
 		this._logout = this._logout.bind(this);
 		this._login = this._login.bind(this);
@@ -129,7 +131,8 @@ class App extends Component {
 	}
 
 	onDivisionSelect = (e) => {
-		this.setState({ selectedDivision: e.target.value })
+		this.setState({ selectedDivision: e.target.value });
+		this.setState({ predictionMade: true });
 	}
 
 	requestWinner = (self) => {
@@ -138,14 +141,18 @@ class App extends Component {
 		let requestUrl = `/api/prediction/teamA/${teamAId}/teamB/${teamBId}`;
 		
 		console.log(`requested url is ${requestUrl}`);
+		this.setState({ showSpinner: true });
+		this.setState({ predictionMade: false });
 		axios.get(requestUrl).then((response) => {
 			if (response.data === true) {
 				this.setState({teamAWinner: true});
 				this.setState({predictionMade: true});
+				this.setState({showSpinner: false});
 				console.log('team a is the winner.');
 			} else {
 				this.setState({teamAWinner: false});
-				this.setState({predictionMade: true})
+				this.setState({predictionMade: true});
+				this.setState({showSpinner: false});
 				console.log('team b is the winner.');
 			}
 		}).catch((err) => {
@@ -171,7 +178,8 @@ class App extends Component {
 					}} onTeamSelect={self.onTeamSelect} 
 					onDivisionSelect={self.onDivisionSelect}
 					teamAWinner={self.state.teamAWinner}
-					predictionMade={self.state.predictionMade}/>
+					predictionMade={self.state.predictionMade}
+					showSpinner={self.state.showSpinner}/>
 				{/*  ROUTES */}
 				{/* <Route exact path="/" component={Home} /> */}
 				<Route exact path="/" render={() => <Home user={this.state.user} />} />

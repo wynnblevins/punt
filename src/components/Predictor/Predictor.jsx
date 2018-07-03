@@ -4,11 +4,11 @@ import DivisionPicker from '../DivisionPicker/DivisionPicker';
 
 const Predictor = (props) => {
 
-  if (props.predictionMade === false) {
+  if (props.predictionMade === false && props.showSpinner === false) {
     const divisionTeams = props.teams.filter((team) => team.division === props.selectedDivision);
     const pickerAOpts = props.teamBID ? divisionTeams.filter((team) => team.id != props.teamBID) : divisionTeams;
     const pickerBOpts = props.teamAID ? divisionTeams.filter((team) => team.id != props.teamAID) : divisionTeams;
-    console.log(props, divisionTeams, pickerAOpts, pickerBOpts);
+    
     return (
       <div className="pickersWrapper">
         <div className="row">
@@ -39,7 +39,46 @@ const Predictor = (props) => {
         </div>
       </div>
     );
+  } else if (props.predictionMade === false && props.showSpinner === true) {
+    const divisionTeams = props.teams.filter((team) => team.division === props.selectedDivision);
+    const pickerAOpts = props.teamBID ? divisionTeams.filter((team) => team.id != props.teamBID) : divisionTeams;
+    const pickerBOpts = props.teamAID ? divisionTeams.filter((team) => team.id != props.teamAID) : divisionTeams;
+    
+    return ( 
+      <div className="pickersWrapper">
+        <div className="row">
+          <div className="col-xs-12">
+            <DivisionPicker id="divisionPicker" divisions={props.divisions} 
+              onDivisionSelect={props.onDivisionSelect} value={props.selectedDivision} pickerLabel="Select Division">
+            </DivisionPicker>          
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-sm-12 col-md-6">
+            <TeamPicker id='rightTeamPicker' 
+              teams={pickerAOpts} 
+              onTeamSelect={props.onTeamSelect} pickerLabel="Select Team A">
+            </TeamPicker>    
+          </div>
+          <div className="col-sm-12 col-md-6">
+            <TeamPicker id='leftTeamPicker' teams={props.teams} 
+              teams={pickerBOpts}  
+              onTeamSelect={props.onTeamSelect} pickerLabel="Select Team B">
+            </TeamPicker>
+          </div>
+          <div>
+            <img src="./spinner_rsz.gif" alt="Getting prediction"/> 
+          </div>
+          <button onClick={props.onPredictClick} disabled
+            type="button" className="btn btn-primary btn-lg">Predict</button>
+        </div>
+      </div>
+    );
   } else {
+    const divisionTeams = props.teams.filter((team) => team.division === props.selectedDivision);
+    const pickerAOpts = props.teamBID ? divisionTeams.filter((team) => team.id != props.teamBID) : divisionTeams;
+    const pickerBOpts = props.teamAID ? divisionTeams.filter((team) => team.id != props.teamAID) : divisionTeams;
+    
     if (props.teamAWinner) {
       return (
         <div className="pickersWrapper">
@@ -53,13 +92,13 @@ const Predictor = (props) => {
           <div className="row">
             <div className="col-sm-12 col-md-6">
               <TeamPicker id='rightTeamPicker'
-                teams={props.teams.filter(team => team.division === props.selectedDivision )}
+                teams={pickerAOpts}
                 onTeamSelect={props.onTeamSelect} pickerLabel="Select Team A">
               </TeamPicker>    
             </div>
             <div className="col-sm-12 col-md-6">
               <TeamPicker id='leftTeamPicker' teams={props.teams} 
-                teams={props.teams.filter(team => team.division === props.selectedDivision)}
+                teams={pickerBOpts}
                 onTeamSelect={props.onTeamSelect} pickerLabel="Select Team B">
               </TeamPicker>
             </div>
@@ -84,14 +123,14 @@ const Predictor = (props) => {
           <div className="row">
             <div className="col-sm-12 col-md-6">
               <TeamPicker id='rightTeamPicker'
-                teams={props.teams.filter(team => team.division === props.selectedDivision )}
+                teams={pickerAOpts}
                 onTeamSelect={props.onTeamSelect} 
                 pickerLabel="Select Team A">
               </TeamPicker>    
             </div>
             <div className="col-sm-12 col-md-6">
               <TeamPicker id='leftTeamPicker' 
-                teams={props.teams.filter(team => team.division === props.selectedDivision )}
+                teams={pickerBOpts}
                 onTeamSelect={props.onTeamSelect} 
                 pickerLabel="Select Team B">
               </TeamPicker>
