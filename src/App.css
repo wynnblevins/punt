@@ -42,12 +42,12 @@ h1 {
 }
 
 ul.nav.nav-tabs > li > a {
-  background-color: #f6f6f6; 
+  background-color: #EDEDEE; 
   color: #777;
 }
 
 ul.nav.nav-tabs > li.active > a {
-  background-color: #EDEDEE;
+  background-color: #f6f6f6;
   color: #777;
 }
 
@@ -63,7 +63,7 @@ body {
 }
 
 .tab-content {
-  background-color: #EDEDEE;
+  background-color: #f6f6f6;
 }
 
 #outcome-wrapper {
@@ -78,7 +78,7 @@ body {
 }
 
 .navbar-default {
-  background-color: #EDEDEE
+  background-color: #f6f6f6
 }
 
 .centered-img {
