@@ -8,7 +8,7 @@ const Description = (props) => {
         data structure known as a decision tree. The following image shows a decision tree which 
         helps us decide whether we will play outside or not.</p>
       <div className="text-center">
-        <img className="rounded mx-auto d-block" alt="Decision Tree" 
+        <img className="centered-img img-responsive" alt="Decision Tree" 
           src="./play-outside-decision-tree.png"/>
       </div>
       <p className="aboutParagraph">We read a decision tree by starting at the top or 

@@ -80,3 +80,7 @@ body {
 .navbar-default {
   background-color: #EDEDEE
 }
+
+.centered-img {
+  margin: 0 auto;
+}
