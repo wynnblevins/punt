@@ -2,8 +2,7 @@ import React from 'react';
 
 const Description = (props) => {
   return (
-    <div id="descriptionContent">
-      <h1 className="aboutHeader">Machine Learning: ID3</h1>
+    <div className="paneWrapper" id="descriptionContent">
       <p className="aboutParagraph">The Punt prediction program, when given a pair of football teams, 
         makes a prediction as to which football team will win.  It does this by using a 
         data structure known as a decision tree. The following image shows a decision tree which 

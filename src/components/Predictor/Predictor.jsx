@@ -9,7 +9,7 @@ const Predictor = (props) => {
   const pickerBOpts = props.teamAID ? divisionTeams.filter((team) => team.id != props.teamAID) : divisionTeams;
   
   return (
-    <div className="pickersWrapper">
+    <div className="panelWrapper">
       <div className="row">
         <div className="col-xs-12">
           <DivisionPicker id="divisionPicker" divisions={props.divisions} 
