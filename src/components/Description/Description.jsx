@@ -2,7 +2,7 @@ import React from 'react';
 
 const Description = (props) => {
   return (
-    <div id="desciptionContent">
+    <div id="descriptionContent">
       <h1 className="aboutHeader">Machine Learning: ID3</h1>
       <p className="aboutParagraph">The Punt prediction program, when given a pair of football teams, 
         makes a prediction as to which football team will win.  It does this by using a 

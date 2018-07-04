@@ -29,9 +29,42 @@
 
 .aboutHeader {
   text-align: left;
+  margin-top: 0px;
 }
 
 a#logoutLink {
   margin-right: 20px;
   color: #777;
+}
+
+h1 {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+ul.nav.nav-tabs > li > a {
+  background-color: #EDEDEE
+}
+
+body {
+  background: url('./gridiron.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.tab-content {
+  background-color: #EDEDEE;
+}
+
+#outcome-wrapper {
+  min-height:280px;
+}
+
+#descriptionContent,
+.pickersWrapper{
+  box-shadow: 5px 10px 18px rgba(0, 0, 0, 0.8);
 }

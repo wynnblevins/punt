@@ -42,9 +42,13 @@ const DisplayLinks = props => {
 	} 
 	else {
 		return (
-			<div>		
-				<Link to="/login">login</Link>
-				<Link to="/signup">sign up</Link>
+			<div>
+				<div>		
+					<Link to="/login">login</Link>
+				</div>
+			  <div>
+				  <Link to="/signup">sign up</Link>
+			  </div>
 			</div>
 		)
 	}
