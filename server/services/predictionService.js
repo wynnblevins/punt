@@ -113,7 +113,7 @@ const predictionService = {
             seasonStr = seasonIdService.getSeasonIds()[3];  
             break;
           }
-
+          console.log('response: ' + responses);
           let seasonResponse = responses[i].data;
           let games = seasonResponse.fullgameschedule.gameentry;
 

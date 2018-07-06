@@ -4,8 +4,8 @@ const authValueService = require('./authValueService.js');
 const seasonScheduleService = {
   getSeasonSchedule: function (seasonStr) {
     
-    let sportsFeedUrl = `https://api.mysportsfeeds.com/v1.2/pull/nfl/${seasonStr}/full_game_schedule.json`;
-    
+    let sportsFeedUrl = `https://api.mysportsfeeds.com/v1.1/pull/nfl/${seasonStr}/full_game_schedule.json`;
+    console.log('AUTH: ' + authValueService.getAuthValue());
     return axios({
       method: 'GET',
       url: sportsFeedUrl,
