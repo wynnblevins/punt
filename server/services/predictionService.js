@@ -71,6 +71,8 @@ function runDecisionTree(data) {
   ];
 
   let dt = new DecisionTree(gameHistory, className, features);
+  
+  // predicted object is key/value obj where all values are undefined 
   let predictedClass = dt.predict({
     teamAKickoffReturnYds: gameHistory.teamAKickoffReturnYds,
     teamBKickoffReturnYds: gameHistory.teamBKickoffReturnYds,
