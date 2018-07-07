@@ -5,10 +5,7 @@ const seasonScheduleService = require('./seasonScheduleService.js');
 const gameIdService = require('./gameIdService.js');
 const teamService = require('./teamService.js');
 const gameWinnerService = require('./gameWinnerService.js');
-const kickoffReturnYdsService = require('./kickoffReturnYdsService.js');
-const fumblesService = require('./fumblesService.js');
-const puntReturnYdsService = require('./puntReturnYdsService.js');
-const interceptionsService = require('./interceptionsService.js');
+const gameObjFactory = require('./gameObjFactory');
 
 function requestSeasonSchedules() {
   let seasonSchedulePromises = [];
@@ -89,6 +86,10 @@ function runDecisionTree(data) {
 const predictionService = {  
   predict: function (teamAId, teamBId) {
     let winnerPromises = [];
+
+    teamAId = parseInt(teamAId);
+    teamBId = parseInt(teamBId);
+
     let teamA = teamService.getTeamById(teamAId);
     let teamB = teamService.getTeamById(teamBId);
     
@@ -116,7 +117,7 @@ const predictionService = {
             seasonStr = seasonIdService.getSeasonIds()[3];  
             break;
           }
-          console.log('response: ' + responses);
+          
           let seasonResponse = responses[i].data;
           let games = seasonResponse.fullgameschedule.gameentry;
 
@@ -182,7 +183,7 @@ const predictionService = {
             let teamAPlayers = null;
             let teamBPlayers = null;
 
-            // check if team A is the home team
+            //check if team A is the home team
             if (gameObj.homeTeamAbbr === teamA.abbr) {
               gameObj.teamAAbbr = gameObj.homeTeamAbbr;
               gameObj.teamBAbbr = gameObj.awayTeamAbbr;
@@ -195,19 +196,8 @@ const predictionService = {
               teamAPlayers = gamesData[i].gameData.gameboxscore.awayTeam.awayPlayers.playerEntry;
               teamBPlayers = gamesData[i].gameData.gameboxscore.homeTeam.homePlayers.playerEntry;
             }
-            
-            // get total number of kickoff return yds 
-            gameObj.teamAKickoffReturnYds = kickoffReturnYdsService.getTotalForAllPlayers(teamAPlayers);
-            gameObj.teamBKickoffReturnYds = kickoffReturnYdsService.getTotalForAllPlayers(teamBPlayers);
-          
-            // get total number of fumbles
-            gameObj.teamAFumbles = fumblesService.getTotalForAllPlayers(teamAPlayers);
-            gameObj.teamBFumbles = fumblesService.getTotalForAllPlayers(teamBPlayers);
-            
-            // put other stats on gameObj here...
-            gameObj.teamAPuntReturnYds = puntReturnYdsService.getTotalForAllPlayers(teamAPlayers);
-            gameObj.teamBPuntReturnYds = puntReturnYdsService.getTotalForAllPlayers(teamBPlayers);  
 
+            gameObj = gameObjFactory.buildGameObj(gameObj, teamAPlayers, teamBPlayers);
             parsedGameObjs.push(gameObj);
           }       
 
