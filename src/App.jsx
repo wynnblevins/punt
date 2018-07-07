@@ -170,6 +170,8 @@ class App extends Component {
 		return (
 			<div className="App">				
 				<Header user={this.state.user} _logout={self._logout} />
+				teamA: {self.state.teamAID}
+				teamB: {self.state.teamBID}
 				{/* LINKS to our different 'pages' */}
 				<DisplayLinks loggedIn={self.state.loggedIn} 
 					teams={self.state.teams} 

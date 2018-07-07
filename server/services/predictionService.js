@@ -77,7 +77,9 @@ function runDecisionTree(data) {
     teamAPuntReturnYds: gameHistory.teamAPuntReturnYds,
     teamBPuntReturnYds: gameHistory.teamBPuntReturnYds,
     teamAFumbles: gameHistory.teamAFumbles,
-    teamBFumbles: gameHistory.teamBFumbles
+    teamBFumbles: gameHistory.teamBFumbles,
+    teamAInterceptions: gameHistory.teamAInterceptions,
+    teamBInterceptions: gameHistory.teamBInterceptions
   });
 
   return predictedClass;
@@ -180,23 +182,34 @@ const predictionService = {
             gameObj.awayScore = awayScore;
             gameObj.preParsedGameId = gamesData[i].id;
             
+            // Get list of team A and teamB players 
+            // depending on who the home team is
             let teamAPlayers = null;
             let teamBPlayers = null;
 
-            //check if team A is the home team
-            if (gameObj.homeTeamAbbr === teamA.abbr) {
+            if (gameObj.homeTeamAbbr === teamA.abbreviation) {
               gameObj.teamAAbbr = gameObj.homeTeamAbbr;
               gameObj.teamBAbbr = gameObj.awayTeamAbbr;
+              teamBPlayers = gamesData[i].gameData.gameboxscore.homeTeam.homePlayers.playerEntry;
+              teamAPlayers = gamesData[i].gameData.gameboxscore.awayTeam.awayPlayers.playerEntry;
+            } 
+            else if (gameObj.homeTeamAbbr === teamB.abbreviation) {
+              gameObj.teamBAbbr = gameObj.homeTeamAbbr;
+              gameObj.teamAAbbr = gameObj.awayTeamAbbr;  
               teamAPlayers = gamesData[i].gameData.gameboxscore.homeTeam.homePlayers.playerEntry;
               teamBPlayers = gamesData[i].gameData.gameboxscore.awayTeam.awayPlayers.playerEntry;
-            } else { 
+            } 
+            else { 
+              console.error('ERROR!! RESULTS MAY BE INNACURATE, HANDLING ERROR GRACEFULLY');
               gameObj.teamBAbbr = gameObj.homeTeamAbbr;
-              gameObj.teamAAbbr = gameObj.awayTeamAbbr;
-              
-              teamAPlayers = gamesData[i].gameData.gameboxscore.awayTeam.awayPlayers.playerEntry;
-              teamBPlayers = gamesData[i].gameData.gameboxscore.homeTeam.homePlayers.playerEntry;
+              gameObj.teamAAbbr = gameObj.awayTeamAbbr;  
+              teamAPlayers = gamesData[i].gameData.gameboxscore.homeTeam.homePlayers.playerEntry;
+              teamBPlayers = gamesData[i].gameData.gameboxscore.awayTeam.awayPlayers.playerEntry;
             }
 
+            // taking team A's players, team B's players, 
+            // and the partially constructed gameObj, build
+            // a gameObj which will represent one time the two teams met
             gameObj = gameObjFactory.buildGameObj(gameObj, teamAPlayers, teamBPlayers);
             parsedGameObjs.push(gameObj);
           }       
