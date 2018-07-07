@@ -43,12 +43,12 @@ const DisplayLinks = props => {
 	else {
 		return (
 			<div>
-				<div>		
-					<Link to="/login">login</Link>
-				</div>
-			  <div>
-				  <Link to="/signup">sign up</Link>
-			  </div>
+				<a className="btn btn-default" href="/login">
+				  Log In <span className="glyphicon glyphicon-log-in"></span> 
+				</a>
+				<a className="btn btn-default" href="/signup">
+				  <span className="glyphicon glyphicon-user"></span> Sign Up 
+				</a>
 			</div>
 		)
 	}
