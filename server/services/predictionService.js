@@ -8,6 +8,7 @@ const gameWinnerService = require('./gameWinnerService.js');
 const kickoffReturnYdsService = require('./kickoffReturnYdsService.js');
 const fumblesService = require('./fumblesService.js');
 const puntReturnYdsService = require('./puntReturnYdsService.js');
+const interceptionsService = require('./interceptionsService.js');
 
 function requestSeasonSchedules() {
   let seasonSchedulePromises = [];
@@ -67,7 +68,9 @@ function runDecisionTree(data) {
     'teamAFumbles',
     'teamBFumbles',
     'teamAPuntReturnYds',
-    'teamBPuntReturnYds'
+    'teamBPuntReturnYds',
+    'teamAInterceptions',
+    'teamBInterceptions'
   ];
 
   let dt = new DecisionTree(gameHistory, className, features);
