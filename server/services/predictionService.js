@@ -66,6 +66,8 @@ function runDecisionTree(data) {
     'teamBFumbles',
     'teamAPuntReturnYds',
     'teamBPuntReturnYds',
+    'teamAPassYards',
+    'teamBPassYards',
     'teamAInterceptions',
     'teamBInterceptions'
   ];
@@ -80,6 +82,8 @@ function runDecisionTree(data) {
     teamBPuntReturnYds: gameHistory.teamBPuntReturnYds,
     teamAFumbles: gameHistory.teamAFumbles,
     teamBFumbles: gameHistory.teamBFumbles,
+    teamAPassYards: gameHistory.teamAPassYards,
+    teamBPassYards: gameHistory.teamBPassYards,
     teamAInterceptions: gameHistory.teamAInterceptions,
     teamBInterceptions: gameHistory.teamBInterceptions
   });
@@ -138,20 +142,14 @@ const predictionService = {
               // if the game we're currently on is 
               // a teamA home game and teamB away game
               // get the correct game ids 
-              let homeTeam = teamA; 
-              let awayTeam = teamB;
               let gameDate = game.date;
-
-              gameId = gameIdService.formGameId(gameDate, homeTeam.abbreviation, awayTeam.abbreviation);
-            } else if (awayTeamId === teamA.id && homeTeamId === teamB.id) {
+              gameId = gameIdService.formGameId(gameDate, teamA.abbreviation, teamB.abbreviation);
+            } else if (awayTeamId === teamAId && homeTeamId === teamBId) {
               // if the game we're currently on is 
               // a teamB home game and teamA away game
               // get the correct game ids
-              let homeTeam = teamB; 
-              let awayTeam = teamA;
               let gameDate = game.date;
-
-              gameId = gameIdService.formGameId(gameDate, homeTeam.abbreviation, awayTeam.abbreviation);
+              gameId = gameIdService.formGameId(gameDate, teamB.abbreviation, teamA.abbreviation);
             }
             
             // if we found a game we want to use for training

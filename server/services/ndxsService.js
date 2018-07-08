@@ -3,8 +3,8 @@ const ndxsService = {
     const ndxs = {
       preParsedStr: 0,
       gameId: 1,
-      homeTeamAbbr: 2,
-      awayTeamAbbr: 3
+      homeTeamAbbr: 3,
+      awayTeamAbbr: 2
     };
     return ndxs;
   }
