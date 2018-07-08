@@ -43,16 +43,16 @@ const DisplayLinks = props => {
 	} 
 	else {
 		return (
-			<div className="splash-container">
-				<img src={puntLogo} className="img-responsive center-block vertical-align"
-					alt="football image"/>
+			<div className="splash-app-logo">	
+				<img src={puntLogo} className="img-responsive center-block"
+							alt="football image"/>
 				<a className="btn btn-default" href="/login">
 					Log In <span className="glyphicon glyphicon-log-in"></span> 
 				</a>
 				<a className="btn btn-default" href="/signup">
 					<span className="glyphicon glyphicon-user"></span> Sign Up 
 				</a>
-			</div>	
+			</div>
 		)
 	}
 }

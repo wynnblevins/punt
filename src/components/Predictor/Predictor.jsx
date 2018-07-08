@@ -30,7 +30,8 @@ const Predictor = (props) => {
             onTeamSelect={props.onTeamSelect} pickerLabel="Select Team B">
           </TeamPicker>
         </div>
-        <PredictionOutcome teamAWinner={props.teamAWinner} predictionMade={props.predictionMade} 
+        <PredictionOutcome teamAWinner={props.teamAWinner} 
+          predictionMade={props.predictionMade} 
           showSpinner={props.showSpinner}></PredictionOutcome>
         <button onClick={props.onPredictClick} 
           type="button" className="btn btn-primary btn-lg">Predict</button>
