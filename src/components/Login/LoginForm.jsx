@@ -34,23 +34,45 @@ class LoginForm extends Component {
 		} else {
 			return (
 				<div className="LoginForm">
-					<h1>Login form</h1>
-					<form>
-						<label htmlFor="username">Username: </label>
-						<input
-							type="text"
-							name="username"
-							value={this.state.username}
-							onChange={this.handleChange}
-						/>
-						<label htmlFor="password">Password: </label>
-						<input
-							type="password"
-							name="password"
-							value={this.state.password}
-							onChange={this.handleChange}
-						/>
-						<button onClick={this.handleSubmit}>Login</button>
+					<form className="form-horizontal">
+						<fieldset>
+							<legend>Please Log In</legend>
+
+							<div className="form-group">
+								<label className="col-md-4 control-label" 
+									for="usernameInput">Username</label>  
+  							<div className="col-md-4">
+									<input name="username"
+										value={this.state.username}
+										onChange={this.handleChange}
+										id="usernameInput" 
+										type="text" 
+										placeholder="username" 
+										className="form-control input-md"/>
+  							</div>
+							</div>
+
+							<div className="form-group">
+								<label className="col-md-4 control-label" 
+									htmlFor="passwordInput">Password</label>
+								<div className="col-md-4">
+									<input id="passwordInput" 
+										type="password"
+										name="password"
+										value={this.state.password}
+										onChange={this.handleChange}
+										placeholder="password" 
+										className="form-control input-md"/>
+								</div>
+							</div>
+
+							<div class="form-group">
+  							<div class="col-md-4">
+									<button id="loginButton" name="loginButton" 
+										className="btn btn-primary" onClick={this.handleSubmit}>Log In</button>
+  							</div>
+							</div>
+						</fieldset>
 					</form>
 				</div>
 			)
