@@ -11,6 +11,7 @@ import Predictor from './components/Predictor/Predictor';
 import Teams from './teams';
 import Divisions from './divisions';
 import Description from './components/Description/Description';
+import puntLogo from './images/football_logo_splash.png';
 
 const DisplayLinks = props => {
 	if (props.loggedIn) {
@@ -42,14 +43,16 @@ const DisplayLinks = props => {
 	} 
 	else {
 		return (
-			<div>
+			<div className="splash-container">
+				<img src={puntLogo} className="img-responsive center-block vertical-align"
+					alt="football image"/>
 				<a className="btn btn-default" href="/login">
-				  Log In <span className="glyphicon glyphicon-log-in"></span> 
+					Log In <span className="glyphicon glyphicon-log-in"></span> 
 				</a>
 				<a className="btn btn-default" href="/signup">
-				  <span className="glyphicon glyphicon-user"></span> Sign Up 
+					<span className="glyphicon glyphicon-user"></span> Sign Up 
 				</a>
-			</div>
+			</div>	
 		)
 	}
 }

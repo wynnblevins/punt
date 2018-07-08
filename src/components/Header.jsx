@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Header = props => {
 	let Header;
 	if (props.user === null) {
-		Header = <p>Welcome to Punt, Please Log In.</p>
+		Header = <div></div>;
 	} else if (props.user.firstName) {
 		Header = (
 			<Navbar collapseOnSelect>
