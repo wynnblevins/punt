@@ -66,7 +66,7 @@ class LoginForm extends Component {
 								</div>
 							</div>
 
-							<div class="form-group">
+							<div className="form-group">
   							<div class="col-md-4">
 									<button id="loginButton" name="loginButton" 
 										className="btn btn-primary" onClick={this.handleSubmit}>Log In</button>

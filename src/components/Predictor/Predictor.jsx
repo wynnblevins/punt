@@ -2,6 +2,7 @@ import React from 'react';
 import TeamPicker from '../TeamPicker/TeamPicker';
 import DivisionPicker from '../DivisionPicker/DivisionPicker';
 import PredictionOutcome from '../PredictionOutcome/PredictionOutcome';
+import TeamHelmet from '../TeamHelmet/TeamHelmet';
 
 const Predictor = (props) => {
   const divisionTeams = props.teams.filter((team) => team.division === props.selectedDivision);
@@ -13,7 +14,8 @@ const Predictor = (props) => {
       <div className="row">
         <div className="col-xs-12">
           <DivisionPicker id="divisionPicker" divisions={props.divisions} 
-            onDivisionSelect={props.onDivisionSelect} value={props.selectedDivision} pickerLabel="Select Division">
+            onDivisionSelect={props.onDivisionSelect} value={props.selectedDivision} 
+            pickerLabel="Select Division">
           </DivisionPicker>          
         </div>
       </div>
@@ -25,10 +27,18 @@ const Predictor = (props) => {
           </TeamPicker>    
         </div>
         <div className="col-sm-12 col-md-6">
-          <TeamPicker id='leftTeamPicker' teams={props.teams} 
+          <TeamPicker id='leftTeamPicker' 
             teams={pickerBOpts}  
             onTeamSelect={props.onTeamSelect} pickerLabel="Select Team B">
           </TeamPicker>
+        </div>
+        <div className="row">
+          <div className="col-xs-12 col-sm-6">
+            <TeamHelmet teamLogo={props.teamALogo}></TeamHelmet>
+          </div>
+          <div className="col-xs-12 col-sm-6">
+            <TeamHelmet teamLogo={props.teamBLogo}></TeamHelmet>  
+          </div>
         </div>
         <PredictionOutcome teamAWinner={props.teamAWinner} 
           predictionMade={props.predictionMade} 

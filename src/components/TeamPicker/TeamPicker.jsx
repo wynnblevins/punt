@@ -14,7 +14,8 @@ class TeamPicker extends Component {
     return (
       <FormGroup>
         <ControlLabel>{this.props.pickerLabel}</ControlLabel>
-        <FormControl id={this.props.id} onChange={this.props.onTeamSelect} componentClass="select" 
+        <FormControl id={this.props.id} onChange={this.props.onTeamSelect} 
+          componentClass="select" 
           placeholder="select team" value={this.state.teamId}>
           {this.props.teams.map((team) => {
             return <option key={team.id} value={team.id}>{team.name}</option>

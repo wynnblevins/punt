@@ -143,7 +143,7 @@ const predictionService = {
               let gameDate = game.date;
 
               gameId = gameIdService.formGameId(gameDate, homeTeam.abbreviation, awayTeam.abbreviation);
-            } else if (awayTeamId === teamA.id && homeTeamId === teamB.id) {
+            } else if (awayTeamId === teamAId && homeTeamId === teamBId) {
               // if the game we're currently on is 
               // a teamB home game and teamA away game
               // get the correct game ids

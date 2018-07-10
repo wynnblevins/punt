@@ -25,6 +25,8 @@ const DisplayLinks = props => {
 							teams={props.teams} divisions={props.divisions}
 							teamAID={props.teamAID}
 							teamBID={props.teamBID}
+							teamALogo={props.teamALogo}
+							teamBLogo={props.teamBLogo}
 							predictionMade={props.predictionMade} 
 							teamAWinner={props.teamAWinner}
 							selectedDivision={props.selectedDivision}
@@ -68,6 +70,8 @@ class App extends Component {
 			user: null,
 			teamAID: null,
 			teamBID: null,
+			teamALogo: null,
+			teamBLogo: null,
 			teamAWinner: null,
 			predictionMade: false,
 			showSpinner: false
@@ -78,9 +82,7 @@ class App extends Component {
 	
 	componentDidMount() {
 		axios.get('/auth/user').then(response => {
-			console.log(response.data)
 			if (!!response.data.user) {
-				console.log('THERE IS A USER')
 				this.setState({
 					loggedIn: true,
 					user: response.data.user
@@ -96,9 +98,7 @@ class App extends Component {
 
 	_logout(event) {
 		event.preventDefault()
-		console.log('logging out')
 		axios.post('/auth/logout').then(response => {
-			console.log(response.data)
 			if (response.status === 200) {
 				this.setState({
 					loggedIn: false,
@@ -113,7 +113,6 @@ class App extends Component {
 				username,
 				password
 			}).then(response => {
-				console.log(response)
 				if (response.status === 200) {
 					// update the state
 					this.setState({
@@ -124,14 +123,27 @@ class App extends Component {
 			});
 	}
 
+	setImage = (teamId, rightTeam) => {
+		let selectedTeam = this.state.teams.filter(team => teamId == team.id)[0];
+		if (!rightTeam) {
+			this.setState({teamBLogo: selectedTeam.rightHelmet});
+		} else {
+			this.setState({teamALogo: selectedTeam.leftHelmet});
+		}
+	}
+
 	onTeamSelect = (e) => {
 		const rightId = 'rightTeamPicker';
 		const leftId = 'leftTeamPicker';
 
-		if (e.target.id === rightId) {
-			this.setState({ teamAID: e.target.value });
+		if (e.target.id === rightId) {		
+			this.setState({ teamAID: e.target.value }, () => {
+				this.setImage(this.state.teamAID, true);
+			});
 		} else if (e.target.id === leftId) {
-			this.setState({ teamBID: e.target.value })
+			this.setState({ teamBID: e.target.value }, () => {
+				this.setImage(this.state.teamBID, false);
+			});
 		} else {
 			console.error('Holy crap, something is waaaay wrong');
 		}
@@ -139,7 +151,7 @@ class App extends Component {
 
 	onDivisionSelect = (e) => {
 		this.setState({ selectedDivision: e.target.value });
-		this.setState({ predictionMade: true });
+		this.setState({ predictionMade: false });
 	}
 
 	requestWinner = (self) => {
@@ -178,6 +190,8 @@ class App extends Component {
 					teams={self.state.teams} 
 					teamAID={self.state.teamAID}
 					teamBID={self.state.teamBID}
+					teamALogo={self.state.teamALogo}
+					teamBLogo={self.state.teamBLogo}
 					selectedDivision={self.state.selectedDivision} 
 					divisions={self.state.divisions} 
 					onPredictClick={function () {
