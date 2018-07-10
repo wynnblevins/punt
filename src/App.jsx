@@ -150,8 +150,10 @@ class App extends Component {
 	}
 
 	onDivisionSelect = (e) => {
-		this.setState({ selectedDivision: e.target.value });
-		this.setState({ predictionMade: false });
+		this.setState({ 
+			selectedDivision: e.target.value, 
+			predictionMade: false 
+		});
 	}
 
 	requestWinner = (self) => {
