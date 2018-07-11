@@ -1,5 +1,5 @@
 const interceptionsService = {
-  getInterceptionsTotalForPlayers: function (players) {
+  getTotalForAllPlayers: function (players) {
     let totalInterceptions = 0;
     
     for (var i = 0; i < players.length; i++) {

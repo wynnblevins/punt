@@ -126,9 +126,9 @@ class App extends Component {
 	setImage = (teamId, rightTeam) => {
 		let selectedTeam = this.state.teams.filter(team => teamId == team.id)[0];
 		if (!rightTeam) {
-			this.setState({teamBLogo: selectedTeam.rightHelmet});
+			this.setState({teamBLogo: selectedTeam.leftHelmet});
 		} else {
-			this.setState({teamALogo: selectedTeam.leftHelmet});
+			this.setState({teamALogo: selectedTeam.rightHelmet});
 		}
 	}
 
@@ -137,15 +137,17 @@ class App extends Component {
 		const leftId = 'leftTeamPicker';
 
 		if (e.target.id === rightId) {		
-			this.setState({ teamAID: e.target.value }, () => {
-				this.setImage(this.state.teamAID, true);
+			this.setState({ teamBID: e.target.value }, () => {
+				this.setImage(this.state.teamBID, true);
 			});
 		} else if (e.target.id === leftId) {
-			this.setState({ teamBID: e.target.value }, () => {
-				this.setImage(this.state.teamBID, false);
+			this.setState({ teamAID: e.target.value }, () => {
+				this.setImage(this.state.teamAID, false);
 			});
 		} else {
-			console.error('Holy crap, something is waaaay wrong');
+			let errString = 'Holy crap, something is waaaay wrong';
+			console.error(errString);
+			throw errString;
 		}
 	}
 
@@ -161,19 +163,25 @@ class App extends Component {
 		let teamBId = self.state.teamBID;
 		let requestUrl = `/api/prediction/teamA/${teamAId}/teamB/${teamBId}`;
 		
-		console.log(`requested url is ${requestUrl}`);
-		this.setState({ showSpinner: true });
-		this.setState({ predictionMade: false });
+		this.setState({ 
+			showSpinner: true, 
+			predictionMade: false 
+		});
+		
 		axios.get(requestUrl).then((response) => {
 			if (response.data === true) {
-				this.setState({teamAWinner: true});
-				this.setState({predictionMade: true});
-				this.setState({showSpinner: false});
+				this.setState({
+					teamAWinner: true,
+					predictionMade: true,
+					showSpinner: false
+				});
 				console.log('team a is the winner.');
 			} else {
-				this.setState({teamAWinner: false});
-				this.setState({predictionMade: true});
-				this.setState({showSpinner: false});
+				this.setState({
+					teamAWinner: false,
+					predictionMade: true,
+					showSpinner: false
+				});
 				console.log('team b is the winner.');
 			}
 		}).catch((err) => {

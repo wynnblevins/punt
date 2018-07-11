@@ -21,23 +21,23 @@ const Predictor = (props) => {
       </div>
       <div className="row">
         <div className="col-sm-12 col-md-6">
-          <TeamPicker id='rightTeamPicker' 
+          <TeamPicker id='leftTeamPicker' 
             teams={pickerAOpts} 
             onTeamSelect={props.onTeamSelect} pickerLabel="Select Team A">
           </TeamPicker>    
         </div>
         <div className="col-sm-12 col-md-6">
-          <TeamPicker id='leftTeamPicker' 
+          <TeamPicker id='rightTeamPicker' 
             teams={pickerBOpts}  
             onTeamSelect={props.onTeamSelect} pickerLabel="Select Team B">
           </TeamPicker>
         </div>
         <div className="row">
           <div className="col-xs-12 col-sm-6">
-            <TeamHelmet teamLogo={props.teamALogo}></TeamHelmet>
+            <TeamHelmet teamLogo={props.teamBLogo}></TeamHelmet>
           </div>
           <div className="col-xs-12 col-sm-6">
-            <TeamHelmet teamLogo={props.teamBLogo}></TeamHelmet>  
+            <TeamHelmet teamLogo={props.teamALogo}></TeamHelmet>  
           </div>
         </div>
         <PredictionOutcome teamAWinner={props.teamAWinner} 

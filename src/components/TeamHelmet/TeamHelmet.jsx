@@ -4,7 +4,7 @@ const TeamHelmet = props => {
   if (props.teamLogo) {
     return (
       <div>
-        <img className="img-responsive" src={props.teamLogo}/>
+        <img className="center-block img-responsive" src={props.teamLogo}/>
       </div>
     );
   } else {

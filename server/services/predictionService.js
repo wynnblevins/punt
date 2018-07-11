@@ -67,7 +67,9 @@ function runDecisionTree(data) {
     'teamAPuntReturnYds',
     'teamBPuntReturnYds',
     'teamAInterceptions',
-    'teamBInterceptions'
+    'teamBInterceptions',
+    'teamAPassYards',
+    'teamBPassYards'
   ];
 
   let dt = new DecisionTree(gameHistory, className, features);
@@ -81,7 +83,9 @@ function runDecisionTree(data) {
     teamAFumbles: gameHistory.teamAFumbles,
     teamBFumbles: gameHistory.teamBFumbles,
     teamAInterceptions: gameHistory.teamAInterceptions,
-    teamBInterceptions: gameHistory.teamBInterceptions
+    teamBInterceptions: gameHistory.teamBInterceptions,
+    teamAPassYards: gameHistory.teamAPassYards,
+    teamBPassYards: gameHistory.teamBPassYards
   });
 
   return predictedClass;
@@ -196,8 +200,8 @@ const predictionService = {
               teamAPlayers = gamesData[i].gameData.gameboxscore.awayTeam.awayPlayers.playerEntry;
             } 
             else if (gameObj.homeTeamAbbr === teamB.abbreviation) {
-              gameObj.teamBAbbr = gameObj.homeTeamAbbr;
-              gameObj.teamAAbbr = gameObj.awayTeamAbbr;  
+              gameObj.teamBAbbr = gameObj.awayTeamAbbr;
+              gameObj.teamAAbbr = gameObj.homeTeamAbbr;  
               teamAPlayers = gamesData[i].gameData.gameboxscore.homeTeam.homePlayers.playerEntry;
               teamBPlayers = gamesData[i].gameData.gameboxscore.awayTeam.awayPlayers.playerEntry;
             } 
