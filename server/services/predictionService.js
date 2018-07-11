@@ -77,26 +77,9 @@ function runDecisionTree(data) {
   ];
 
   let dt = new DecisionTree(gameHistory, className, features);
-  let jsonTree = dt.toJSON();
-  console.log(jsonTree);
   
-  // predicted object is key/value obj where all values are undefined 
-  let predictedClass = dt.predict({
-    teamAPuntReturnYds: 0,
-    teamBPuntReturnYds: 0,
-    teamAKickoffReturnYds: 0,
-    teamBKickoffReturnYds: 0,
-    teamAFumbles: 0,
-    teamBFumbles: 0,
-    teamAInterceptions: 0,
-    teamBInterceptions: 0,
-    teamAPassYards: 0,
-    teamBPassYards: 0,
-    teamARushYds: 0,
-    teamBRushYds: 0,
-    teamASacks: 0,
-    teamBSacks: 0
-  });
+  // pass values of current season to predict here
+  let predictedClass = dt.predict({});
 
   return predictedClass;
 }
