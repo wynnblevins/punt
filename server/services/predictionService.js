@@ -69,7 +69,11 @@ function runDecisionTree(data) {
     'teamAInterceptions',
     'teamBInterceptions',
     'teamAPassYards',
-    'teamBPassYards'
+    'teamBPassYards',
+    'teamARushYds',
+    'teamBRushYds',
+    'teamASacks',
+    'teamBSacks'
   ];
 
   let dt = new DecisionTree(gameHistory, className, features);
@@ -85,7 +89,11 @@ function runDecisionTree(data) {
     teamAInterceptions: gameHistory.teamAInterceptions,
     teamBInterceptions: gameHistory.teamBInterceptions,
     teamAPassYards: gameHistory.teamAPassYards,
-    teamBPassYards: gameHistory.teamBPassYards
+    teamBPassYards: gameHistory.teamBPassYards,
+    teamARushYds: gameHistory.teamARushYds,
+    teamBRushYds: gameHistory.teamBRushYds,
+    teamASacks: gameHistory.teamASacks,
+    teamBSacks: gameHistory.teamBSacks
   });
 
   return predictedClass;
@@ -182,8 +190,10 @@ const predictionService = {
           for (var i = 0; i < gamesData.length; i++) {
             let currGameData = gamesData[i];
             let gameObj = gameIdService.parseGameId(currGameData.id)
+            
             let awayScore = parseInt(currGameData.gameData.gameboxscore.quarterSummary.quarterTotals.awayScore);
             let homeScore = parseInt(currGameData.gameData.gameboxscore.quarterSummary.quarterTotals.homeScore);
+            
             gameObj.homeScore = homeScore;
             gameObj.awayScore = awayScore;
             gameObj.preParsedGameId = gamesData[i].id;

@@ -3,6 +3,7 @@ const fumblesService = require('./fumblesService');
 const puntReturnYdsService = require('./puntReturnYdsService');
 const interceptionsService = require('./interceptionsService');
 const passYardsService = require('./passYardsService');
+const rushYdsService = require('./rushYardsService');
 
 const gameObjFactory = {
   buildGameObj: function (gameObj, teamAPlayers, teamBPlayers) {
@@ -26,6 +27,12 @@ const gameObjFactory = {
     gameObj.teamAPassYards = passYardsService.getTotalForAllPlayers(teamAPlayers);
     gameObj.teamBPassYards = passYardsService.getTotalForAllPlayers(teamBPlayers);
 
+    // get total number of rush yds
+    gameObj.teamARushYds = rushYdsService.getTotalForAllPlayers(teamAPlayers);
+    gameObj.teamBRushYds = rushYdsService.getTotalForAllPlayers(teamBPlayers);
+
+    // get total number of sacks 
+    
     return gameObj;
   }
 };
