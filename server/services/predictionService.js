@@ -92,8 +92,10 @@ function runDecisionTree(data) {
     teamBPassYards: gameHistory.teamBPassYards,
     teamARushYds: gameHistory.teamARushYds,
     teamBRushYds: gameHistory.teamBRushYds,
-    teamASacks: gameHistory.teamASacks,
-    teamBSacks: gameHistory.teamBSacks
+    teamAPassAttempts: gameHistory.teamAPassAttempts,
+    teamBPassAttempts: gameHistory.teamBPassAttempts,
+    teamARushAttempts: gameHistory.teamARushAttempts,
+    teamBRushAttempts: gameHistory.teamBRushAttempts
   });
 
   return predictedClass;
