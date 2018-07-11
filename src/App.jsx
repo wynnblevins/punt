@@ -154,7 +154,11 @@ class App extends Component {
 	onDivisionSelect = (e) => {
 		this.setState({ 
 			selectedDivision: e.target.value, 
-			predictionMade: false 
+			predictionMade: false,
+			teamBID: null,
+			teamAID: null,
+			teamALogo: null,
+			teamBLogo: null 
 		});
 	}
 

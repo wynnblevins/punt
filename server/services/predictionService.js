@@ -60,12 +60,12 @@ function runDecisionTree(data) {
 
   let className = 'teamAWins'; 
   let features = [
+    'teamAPuntReturnYds',
+    'teamBPuntReturnYds',
     'teamAKickoffReturnYds',
     'teamBKickoffReturnYds',
     'teamAFumbles',
     'teamBFumbles',
-    'teamAPuntReturnYds',
-    'teamBPuntReturnYds',
     'teamAInterceptions',
     'teamBInterceptions',
     'teamAPassYards',
@@ -77,25 +77,25 @@ function runDecisionTree(data) {
   ];
 
   let dt = new DecisionTree(gameHistory, className, features);
+  let jsonTree = dt.toJSON();
+  console.log(jsonTree);
   
   // predicted object is key/value obj where all values are undefined 
   let predictedClass = dt.predict({
-    teamAKickoffReturnYds: gameHistory.teamAKickoffReturnYds,
-    teamBKickoffReturnYds: gameHistory.teamBKickoffReturnYds,
-    teamAPuntReturnYds: gameHistory.teamAPuntReturnYds,
-    teamBPuntReturnYds: gameHistory.teamBPuntReturnYds,
-    teamAFumbles: gameHistory.teamAFumbles,
-    teamBFumbles: gameHistory.teamBFumbles,
-    teamAInterceptions: gameHistory.teamAInterceptions,
-    teamBInterceptions: gameHistory.teamBInterceptions,
-    teamAPassYards: gameHistory.teamAPassYards,
-    teamBPassYards: gameHistory.teamBPassYards,
-    teamARushYds: gameHistory.teamARushYds,
-    teamBRushYds: gameHistory.teamBRushYds,
-    teamAPassAttempts: gameHistory.teamAPassAttempts,
-    teamBPassAttempts: gameHistory.teamBPassAttempts,
-    teamARushAttempts: gameHistory.teamARushAttempts,
-    teamBRushAttempts: gameHistory.teamBRushAttempts
+    teamAPuntReturnYds: 0,
+    teamBPuntReturnYds: 0,
+    teamAKickoffReturnYds: 0,
+    teamBKickoffReturnYds: 0,
+    teamAFumbles: 0,
+    teamBFumbles: 0,
+    teamAInterceptions: 0,
+    teamBInterceptions: 0,
+    teamAPassYards: 0,
+    teamBPassYards: 0,
+    teamARushYds: 0,
+    teamBRushYds: 0,
+    teamASacks: 0,
+    teamBSacks: 0
   });
 
   return predictedClass;
