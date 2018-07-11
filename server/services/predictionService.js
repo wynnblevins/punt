@@ -200,8 +200,8 @@ const predictionService = {
               teamAPlayers = gamesData[i].gameData.gameboxscore.awayTeam.awayPlayers.playerEntry;
             } 
             else if (gameObj.homeTeamAbbr === teamB.abbreviation) {
-              gameObj.teamBAbbr = gameObj.awayTeamAbbr;
-              gameObj.teamAAbbr = gameObj.homeTeamAbbr;  
+              gameObj.teamBAbbr = gameObj.homeTeamAbbr;
+              gameObj.teamAAbbr = gameObj.awayTeamAbbr;  
               teamAPlayers = gamesData[i].gameData.gameboxscore.homeTeam.homePlayers.playerEntry;
               teamBPlayers = gamesData[i].gameData.gameboxscore.awayTeam.awayPlayers.playerEntry;
             } 
