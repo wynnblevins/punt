@@ -33,16 +33,33 @@ const Predictor = (props) => {
           </TeamPicker>
         </div>
         <div className="row">
-          <div className="col-xs-12 col-sm-6">
-            <TeamHelmet teamLogo={props.teamBLogo}></TeamHelmet>
+          <div className="hidden-xs visible-sm visible-md visible-lg visible-xl">
+            <div className="col-sm-4">
+              <TeamHelmet teamLogo={props.teamBLogo}></TeamHelmet>
+            </div>
+            <div className="col-sm-4">
+              <PredictionOutcome teamAWinner={props.teamAWinner} 
+                predictionMade={props.predictionMade} 
+                showSpinner={props.showSpinner}></PredictionOutcome>
+            </div>
+            <div className="col-sm-4">
+              <TeamHelmet teamLogo={props.teamALogo}></TeamHelmet>  
+            </div>
           </div>
-          <div className="col-xs-12 col-sm-6">
-            <TeamHelmet teamLogo={props.teamALogo}></TeamHelmet>  
+          <div className="hidden-sm visible-xs">
+            <div className="col-xs-12">
+              <TeamHelmet teamLogo={props.teamBLogo}></TeamHelmet>
+            </div>
+            <div className="col-xs-12">
+              <TeamHelmet teamLogo={props.teamALogo}></TeamHelmet>
+            </div>
+            <div className="col-sm-4">
+              <PredictionOutcome teamAWinner={props.teamAWinner} 
+                predictionMade={props.predictionMade} 
+                showSpinner={props.showSpinner}></PredictionOutcome>  
+            </div>
           </div>
         </div>
-        <PredictionOutcome teamAWinner={props.teamAWinner} 
-          predictionMade={props.predictionMade} 
-          showSpinner={props.showSpinner}></PredictionOutcome>
         <button onClick={props.onPredictClick} 
           type="button" className="btn btn-primary btn-lg">Predict</button>
       </div>

@@ -38,7 +38,7 @@ a#logoutLink {
 }
 
 h1 {
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.0);
 }
 
 ul.nav.nav-tabs > li > a {
@@ -81,7 +81,8 @@ body {
   background-color: #f6f6f6
 }
 
-.centered-img {
+.centered-img,
+.centered {
   margin: 0 auto;
 }
 
