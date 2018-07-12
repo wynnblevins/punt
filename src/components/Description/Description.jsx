@@ -12,12 +12,12 @@ const Description = (props) => {
           src="./play-outside-decision-tree.png"/>
       </div>
       <p className="aboutParagraph">We read a decision tree by starting at the top or 
-        "root node" of the tree and start working toward one of the "leaf nodes" on the bottom 
-        of the tree.  Whatever the value of that final leaf node will be the resulting decision.  
-        This applies to back to Punt in the way that Punt uses a decision tree to arrive at the 
-        final prediction (a.k.a. leaf node) of which team would most likely win should the selected \
-        teams play each other.  The details of how this decision tree is built is what determines 
-        the accuracy of Punt's predictions.</p> 
+        "root node" of the tree and working toward one of the "leaf nodes" on the bottom 
+        of the tree.  Whatever the value of that final leaf node is will represent the resulting 
+        decision of the tree.  This applies to back to Punt in the way that Punt uses a 
+        decision tree to arrive at the final prediction (a.k.a. leaf node) of which team would 
+        most likely win should the selected teams play each other.  The details of how this 
+        decision tree is built is what determines the accuracy of Punt's predictions.</p> 
       <h3 className="aboutHeader">What is ID3?</h3>
       <p className="aboutParagraph">ID3 (Iterative Dichotomiser 3) is an algorithm invented by 
         machine learning and artificial intelligence specialist Ross Quinlan.  Punt uses the ID3 
@@ -28,10 +28,11 @@ const Description = (props) => {
       <h3 className="aboutHeader">Future Developments</h3>
       <p className="aboutParagraph">Currently, we can only train our decision tree with data that
         goes back several years.  That said, the decision trees ID3 builds for us will only get 
-        more accurate with the addition of new years of data.  In theory, as more statistics and data 
-        become available through the mysportsfeed.com REST api, the resulting decision trees 
-        should only become more accurate.  Furthermore, a possibility for future development 
-        involves selectively picking years of data to omit/include when training the decision tree.    
+        more accurate with the addition of new years of data.  In other words, as more statistics 
+        and data become available through the mysportsfeed.com REST api, the resulting decision 
+        trees should only become more accurate.  In addition to adding more years of data, a 
+        possibility for future development involves selectively picking years of data and/or players 
+        to omit/include when training the decision tree.    
       </p>
     </div>
   );
