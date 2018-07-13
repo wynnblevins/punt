@@ -1,40 +1,34 @@
-const kickoffReturnYdsService = require('./kickoffReturnYdsService');
-const fumblesService = require('./fumblesService');
-const puntReturnYdsService = require('./puntReturnYdsService');
-const interceptionsService = require('./interceptionsService');
-const passYardsService = require('./passYardsService');
-const rushYdsService = require('./rushYardsService');
-const rushAttemptsService = require('./rushAttemptsService');
+const getTotalForAllPlayers = require('./gameStatSumService');
 
 const gameObjFactory = {
   buildGameObj: function (gameObj, teamAPlayers, teamBPlayers) {
     // get total number of kickoff return yds 
-    gameObj.teamAKickoffReturnYds = kickoffReturnYdsService.getTotalForAllPlayers(teamAPlayers);
-    gameObj.teamBKickoffReturnYds = kickoffReturnYdsService.getTotalForAllPlayers(teamBPlayers);
+    gameObj.teamAKickoffReturnYds = getTotalForAllPlayers(teamAPlayers, 'KrYds');
+    gameObj.teamBKickoffReturnYds = getTotalForAllPlayers(teamBPlayers, 'KrYds');
   
     // get total number of fumbles
-    gameObj.teamAFumbles = fumblesService.getTotalForAllPlayers(teamAPlayers);
-    gameObj.teamBFumbles = fumblesService.getTotalForAllPlayers(teamBPlayers);
+    gameObj.teamAFumbles = getTotalForAllPlayers(teamAPlayers, 'FumTD');
+    gameObj.teamBFumbles = getTotalForAllPlayers(teamBPlayers, 'FumTD');
     
     // get total number of punt return yds...
-    gameObj.teamAPuntReturnYds = puntReturnYdsService.getTotalForAllPlayers(teamAPlayers);
-    gameObj.teamBPuntReturnYds = puntReturnYdsService.getTotalForAllPlayers(teamBPlayers);
+    gameObj.teamAPuntReturnYds = getTotalForAllPlayers(teamAPlayers, 'PrYds');
+    gameObj.teamBPuntReturnYds = getTotalForAllPlayers(teamBPlayers, 'PrYds');
 
     // get total number of interceptions...
-    gameObj.teamAInterceptions = interceptionsService.getTotalForAllPlayers(teamAPlayers);
-    gameObj.teamBInterceptions = interceptionsService.getTotalForAllPlayers(teamBPlayers);
+    gameObj.teamAInterceptions = getTotalForAllPlayers(teamAPlayers, 'IntTD');
+    gameObj.teamBInterceptions = getTotalForAllPlayers(teamBPlayers, 'IntTD');
 
     // get total number of pass yards
-    gameObj.teamAPassYards = passYardsService.getTotalForAllPlayers(teamAPlayers);
-    gameObj.teamBPassYards = passYardsService.getTotalForAllPlayers(teamBPlayers);
+    gameObj.teamAPassYards = getTotalForAllPlayers(teamAPlayers, 'PassYards');
+    gameObj.teamBPassYards = getTotalForAllPlayers(teamBPlayers, 'PassYards');
 
     // get total number of rush yds
-    gameObj.teamARushYds = rushYdsService.getTotalForAllPlayers(teamAPlayers);
-    gameObj.teamBRushYds = rushYdsService.getTotalForAllPlayers(teamBPlayers);
+    gameObj.teamARushYds = getTotalForAllPlayers(teamAPlayers, 'RushYards');
+    gameObj.teamBRushYds = getTotalForAllPlayers(teamBPlayers, 'RushYards');
 
     // get total number of rush attempts
-    gameObj.teamARushAttempts = rushAttemptsService.getTotalForAllPlayers(teamAPlayers);
-    gameObj.teamBRushAttempts = rushAttemptsService.getTotalForAllPlayers(teamBPlayers);
+    gameObj.teamARushAttempts = getTotalForAllPlayers(teamAPlayers, 'RushAttempts');
+    gameObj.teamBRushAttempts = getTotalForAllPlayers(teamBPlayers, 'RushAttempts');
 
     return gameObj;
   }
