@@ -60,12 +60,10 @@ function runDecisionTree(data) {
 
   let className = 'teamAWins'; 
   let features = [
-    'teamAPuntReturnYds',
-    'teamBPuntReturnYds',
-    'teamAKickoffReturnYds',
-    'teamBKickoffReturnYds',
     'teamAFumbles',
     'teamBFumbles',
+    'teamAKickoffReturnYds',
+    'teamBKickoffReturnYds',
     'teamAInterceptions',
     'teamBInterceptions',
     'teamAPassYards',
@@ -73,7 +71,11 @@ function runDecisionTree(data) {
     'teamARushYds',
     'teamBRushYds',
     'teamASacks',
-    'teamBSacks'
+    'teamBSacks',
+    'teamAPuntReturnYds',
+    'teamBPuntReturnYds',
+    'teamAQbRating',
+    'teamBQbRating'
   ];
 
   let dt = new DecisionTree(gameHistory, className, features);
