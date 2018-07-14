@@ -60,9 +60,11 @@ const DisplayLinks = props => {
 }
 
 class App extends Component {
-	constructor() {
+  
+  constructor() {
 		super()
 		this.state = {
+      OVER_9000: 9001,
 			teams: Teams,
 			divisions: Divisions,
 			selectedDivision: 'AFC East',
@@ -74,7 +76,8 @@ class App extends Component {
 			teamBLogo: null,
 			teamAWinner: null,
 			predictionMade: false,
-			showSpinner: false
+      showSpinner: false,
+      predictEnabled: false
 		}
 		this._logout = this._logout.bind(this);
 		this._login = this._login.bind(this);
@@ -123,13 +126,36 @@ class App extends Component {
 			});
 	}
 
+  checkIsReady = () => {
+    if ((this.state.teamAID && this.state.teamBID) 
+    (this.state.teamAID !== this.state.OVER_9000) 
+    && (this.state.teamBID !== this.state.OVER_9000)) {
+      this.setState({predictEnabled: true});
+    } else {
+      this.setState({predictEnabled: false});
+    }    
+  }
+
 	setImage = (teamId, rightTeam) => {
 		let selectedTeam = this.state.teams.filter(team => teamId == team.id)[0];
-		if (!rightTeam) {
-			this.setState({teamBLogo: selectedTeam.leftHelmet});
-		} else {
-			this.setState({teamALogo: selectedTeam.rightHelmet});
-		}
+    
+    if (selectedTeam) {
+      if (selectedTeam.id != this.state.OVER_9000 && !rightTeam) {
+        this.setState({teamBLogo: selectedTeam.leftHelmet});
+      } else if (selectedTeam.id === this.state.OVER_9000 && !rightTeam) {
+        this.setState({teamBLogo: ''});
+      } else if (selectedTeam.id === this.state.OVER_9000 && rightTeam) {
+        this.setState({teamALogo: ''});
+      } else {
+        this.setState({teamALogo: selectedTeam.rightHelmet});
+      }
+    } else {
+      if(rightTeam) {
+        this.setState({teamALogo: ''});
+      } else {
+        this.setState({teamBLogo: ''});
+      }   
+    }
 	}
 
 	onTeamSelect = (e) => {
