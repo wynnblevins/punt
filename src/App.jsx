@@ -19,7 +19,8 @@ const DisplayLinks = props => {
 			<div>
 				<Tabs defaultActiveKey={1} id="predictorTabs">
 					<Tab eventKey={1} title="Predictor">
-						<Predictor onPredictClick={props.onPredictClick} 
+            <Predictor predictButtonEnabled={props.predictButtonEnabled}
+              onPredictClick={props.onPredictClick} 
 							onTeamSelect={props.onTeamSelect} 
 							onDivisionSelect={props.onDivisionSelect}
 							teams={props.teams} divisions={props.divisions}
@@ -67,7 +68,8 @@ class App extends Component {
       OVER_9000: 9001,
 			teams: Teams,
 			divisions: Divisions,
-			selectedDivision: 'AFC East',
+      selectedDivision: 'AFC East',
+      predictButtonEnabled: false,
 			loggedIn: false,
 			user: null,
 			teamAID: null,
@@ -76,8 +78,7 @@ class App extends Component {
 			teamBLogo: null,
 			teamAWinner: null,
 			predictionMade: false,
-      showSpinner: false,
-      predictEnabled: false
+      showSpinner: false
 		}
 		this._logout = this._logout.bind(this);
 		this._login = this._login.bind(this);
@@ -130,9 +131,9 @@ class App extends Component {
     if ((this.state.teamAID && this.state.teamBID) 
     (this.state.teamAID !== this.state.OVER_9000) 
     && (this.state.teamBID !== this.state.OVER_9000)) {
-      this.setState({predictEnabled: true});
+      this.setState({predictButtonEnabled: true});
     } else {
-      this.setState({predictEnabled: false});
+      this.setState({predictButtonEnabled: false});
     }    
   }
 
@@ -174,7 +175,7 @@ class App extends Component {
 			let errString = 'Holy crap, something is waaaay wrong';
 			console.error(errString);
 			throw errString;
-		}
+    }
 	}
 
 	onDivisionSelect = (e) => {
