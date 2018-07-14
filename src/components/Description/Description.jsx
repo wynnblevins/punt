@@ -3,6 +3,7 @@ import React from 'react';
 const Description = (props) => {
   return (
     <div className="paneWrapper" id="descriptionContent">
+      <h2 className="aboutHeader">Machine Learning!</h2>
       <p className="aboutParagraph">The Punt prediction program, when given a pair of football teams, 
         makes a prediction as to which football team will win.  It does this by using a 
         data structure known as a decision tree. The following image shows a decision tree which 
@@ -15,7 +16,7 @@ const Description = (props) => {
         "root node" of the tree and start working toward one of the "leaf nodes" on the bottom 
         of the tree.  Whatever the value of that final leaf node will be the resulting decision.  
         This applies to back to Punt in the way that Punt uses a decision tree to arrive at the 
-        final prediction (a.k.a. leaf node) of which team would most likely win should the selected \
+        final prediction (a.k.a. leaf node) of which team would most likely win should the selected 
         teams play each other.  The details of how this decision tree is built is what determines 
         the accuracy of Punt's predictions.</p> 
       <h3 className="aboutHeader">What is ID3?</h3>
