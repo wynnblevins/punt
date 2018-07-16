@@ -1,5 +1,6 @@
 const getTotalForAllPlayers = require('./gameStatSumService');
 const getHighestValueForTeam = require('./highestValueService');
+const getAverage = require('./teamAverageService');
 
 const gameObjFactory = {
   buildGameObj: function (gameObj, teamAPlayers, teamBPlayers) {
@@ -34,7 +35,11 @@ const gameObjFactory = {
     // get the best qb rating for both teams
     gameObj.teamAQbRating = getHighestValueForTeam(teamAPlayers, 'QBRating');
     gameObj.teamBQbRating = getHighestValueForTeam(teamBPlayers, 'QBRating');
-    
+
+    // get average num of tackles for teams
+    gameObj.teamAAverageTackleTotal = getAverage(teamAPlayers, 'TackleTotal');
+    gameObj.teamBAverageTackleTotal = getAverage(teamBPlayers, 'TackleTotal');
+
     return gameObj;
   }
 };

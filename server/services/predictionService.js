@@ -62,8 +62,6 @@ function runDecisionTree(data) {
   let features = [
     'teamAFumbles',
     'teamBFumbles',
-    'teamAKickoffReturnYds',
-    'teamBKickoffReturnYds',
     'teamAInterceptions',
     'teamBInterceptions',
     'teamAPassYards',
@@ -75,14 +73,19 @@ function runDecisionTree(data) {
     'teamAPuntReturnYds',
     'teamBPuntReturnYds',
     'teamAQbRating',
-    'teamBQbRating'
+    'teamBQbRating',
+    'teamAAverageTackleTotal',
+    'teamBAverageTackleTotal',
+    'teamAKickoffReturnYds',
+    'teamBKickoffReturnYds',
+    'teamAPuntReturnYds',  
+    'teamBPuntReturnYds'
   ];
 
   let dt = new DecisionTree(gameHistory, className, features);
   
   // pass values of current season to predict here
   let predictedClass = dt.predict({});
-
   return predictedClass;
 }
 

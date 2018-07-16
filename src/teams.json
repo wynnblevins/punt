@@ -1,5 +1,8 @@
 [
-  {"id":76, "division": "NFC West", "abbreviation": "ARI", "name": "Arizona, Cardinals",
+  {"id": 9001, "name": "Select Team", 
+    "rightHelmet": "", 
+    "leftHelmet": ""},
+  {"0id":76, "division": "NFC West", "abbreviation": "ARI", "name": "Arizona, Cardinals",
     "rightHelmet": "./cardinalsHelmet250Right.png", 
     "leftHelmet": "./cardinalsHelmet250.png"},
   {"id":68, "division": "NFC South", "abbreviation": "ATL", "name": "Atlanta, Falcons",

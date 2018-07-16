@@ -60,7 +60,7 @@ const Predictor = (props) => {
             </div>
           </div>
         </div>
-        <button onClick={props.onPredictClick} 
+        <button disabled={props.predictButtonEnabled} onClick={props.onPredictClick} 
           type="button" className="btn btn-primary btn-lg">Predict</button>
       </div>
     </div>

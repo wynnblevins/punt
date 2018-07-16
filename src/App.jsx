@@ -19,7 +19,8 @@ const DisplayLinks = props => {
 			<div>
 				<Tabs defaultActiveKey={1} id="predictorTabs">
 					<Tab eventKey={1} title="Predictor">
-						<Predictor onPredictClick={props.onPredictClick} 
+            <Predictor predictButtonEnabled={props.predictButtonEnabled}
+              onPredictClick={props.onPredictClick} 
 							onTeamSelect={props.onTeamSelect} 
 							onDivisionSelect={props.onDivisionSelect}
 							teams={props.teams} divisions={props.divisions}
@@ -60,12 +61,15 @@ const DisplayLinks = props => {
 }
 
 class App extends Component {
-	constructor() {
+  
+  constructor() {
 		super()
 		this.state = {
+      OVER_9000: 9001,
 			teams: Teams,
 			divisions: Divisions,
-			selectedDivision: 'AFC East',
+      selectedDivision: 'AFC East',
+      predictButtonEnabled: false,
 			loggedIn: false,
 			user: null,
 			teamAID: null,
@@ -74,7 +78,7 @@ class App extends Component {
 			teamBLogo: null,
 			teamAWinner: null,
 			predictionMade: false,
-			showSpinner: false
+      showSpinner: false
 		}
 		this._logout = this._logout.bind(this);
 		this._login = this._login.bind(this);
@@ -123,13 +127,36 @@ class App extends Component {
 			});
 	}
 
+  checkIsReady = () => {
+    if ((this.state.teamAID && this.state.teamBID) 
+    (this.state.teamAID !== this.state.OVER_9000) 
+    && (this.state.teamBID !== this.state.OVER_9000)) {
+      this.setState({predictButtonEnabled: true});
+    } else {
+      this.setState({predictButtonEnabled: false});
+    }    
+  }
+
 	setImage = (teamId, rightTeam) => {
 		let selectedTeam = this.state.teams.filter(team => teamId == team.id)[0];
-		if (!rightTeam) {
-			this.setState({teamBLogo: selectedTeam.leftHelmet});
-		} else {
-			this.setState({teamALogo: selectedTeam.rightHelmet});
-		}
+    
+    if (selectedTeam) {
+      if (selectedTeam.id != this.state.OVER_9000 && !rightTeam) {
+        this.setState({teamBLogo: selectedTeam.leftHelmet});
+      } else if (selectedTeam.id === this.state.OVER_9000 && !rightTeam) {
+        this.setState({teamBLogo: ''});
+      } else if (selectedTeam.id === this.state.OVER_9000 && rightTeam) {
+        this.setState({teamALogo: ''});
+      } else {
+        this.setState({teamALogo: selectedTeam.rightHelmet});
+      }
+    } else {
+      if(rightTeam) {
+        this.setState({teamALogo: ''});
+      } else {
+        this.setState({teamBLogo: ''});
+      }   
+    }
 	}
 
 	onTeamSelect = (e) => {
@@ -148,7 +175,7 @@ class App extends Component {
 			let errString = 'Holy crap, something is waaaay wrong';
 			console.error(errString);
 			throw errString;
-		}
+    }
 	}
 
 	onDivisionSelect = (e) => {
