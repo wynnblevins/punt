@@ -2,6 +2,9 @@
 View the live version of this app here:
 [https://peaceful-plains-44637.herokuapp.com/](https://peaceful-plains-44637.herokuapp.com/)
 
+## Prerequisites
+In order to run the PUNT prediction program, you need to have a set of credentials for the mysportsfeed.com API.
+
 ## To Run Locally
 `yarn install`
 `yarn start`
